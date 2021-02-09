@@ -121,10 +121,12 @@ public class loginForm extends javax.swing.JFrame {
        String passwordUtente, nomeUtente = jTextField1.getText();
        passwordUtente = jPasswordField1.getText();
        boolean ritorno = c1.accedi(nomeUtente, passwordUtente);
-       if(ritorno == true)
-           System.out.println("Accesso effettuato con successo :DDDDDDDDD");
+       /*if(ritorno == true)
+           System.out.println("Accesso effettuato con successo");
        else
-           System.out.println("Accesso non effettuato con successo :DDDDDDDDD");
+           System.out.println("Accesso non effettuato con successo");
+       */
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     

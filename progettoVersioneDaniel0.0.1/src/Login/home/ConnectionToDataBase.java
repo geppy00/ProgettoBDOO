@@ -11,10 +11,10 @@ public class ConnectionToDataBase {
 		try {
 			
 			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Database_1", "postgres", "postgres");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SDB_Procuratori", "postgres", "postgres");
 			
 			if(connection != null) {
-				System.out.println("Connection OK ");
+				System.out.println("Connessione al database effettuata con successo ");
 			}
 		}catch(Exception e) {
 			System.out.println(e);
@@ -32,7 +32,7 @@ public class ConnectionToDataBase {
 		Statement stmt = null;
 		try {
 			stmt = connection.createStatement();
-			String sql = "CREATE TABLE PERSONA"+
+			String sql = "CREATE TABLE Procuratori"+
 						 "(ID INT PRIMARY KEY NOT NULL,"+
 						 "NOME TEXT NOT NULL,"+
 						 "COGNOME TEXT NOT NULL,"+
@@ -82,18 +82,28 @@ public class ConnectionToDataBase {
 	}
 
 	/*CODICE PER FAR COMPARIRE SULLA CONSOLE LA TABELLA DEL NOSTRO DATABASE (SELECT OPERATION)*/
-	public int selectOperation(String nomeUtente) {
+	public int selectOperation(String nomeUtente, String passwordUtente) {
 		Statement stmt = null;
 		Connection connection = connectionToDatabase();
 
 		try {
 			stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM UTENTI;");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM loginUtente;");
 			while(rs.next()) {
-				String nomeUtenteSalvato = rs.getString("nome");
-                                if (nomeUtenteSalvato.equals(nomeUtente)){
+                            
+                            String passwordAdmin = "admin";
+                            String utenteAdmin = "admin";
+                          
+				String nomeUtenteSalvato = rs.getString("utente");
+                                String passwordUtenteSalvato = rs.getString("passwordUtente");
+                                if (nomeUtenteSalvato.equals(nomeUtente)&& passwordUtenteSalvato.equals(passwordUtente)){
                                     return 1;
+                                
+                                    
+                                }if(passwordUtenteSalvato.equals(passwordAdmin) && nomeUtenteSalvato.equals(utenteAdmin)){
+                                    return 2;
                                 }
+                                
                                    
 			}
 			rs.close();
@@ -103,7 +113,7 @@ public class ConnectionToDataBase {
  			System.err.println(e.getClass().getName()+": "+e.getMessage());
 			System.exit(0);
 		}
-		System.out.println("La stampa della tabella è andata a buon fine");
+		//System.out.println("La stampa della tabella è andata a buon fine");
                 return 0; 
 	}
 
@@ -173,4 +183,40 @@ public class ConnectionToDataBase {
 			System.exit(0);
 		}
 	}
+        
+        public void stampaTabellaTerminale(){
+            Statement stmt = null;
+            Connection connct1 = connectionToDatabase();
+            
+            try{
+                
+                stmt = connct1.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from UTENTI");
+                
+                while(rs.next()){
+                    
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String cognome = rs.getString("cognome");
+                    int eta = rs.getInt("eta");
+                    System.out.println("ID = "+id);
+                    System.out.println("Nome = "+nome);
+                    System.out.println("Cognome = "+cognome);
+                    System.out.println("Eta = "+eta);
+                    System.out.println("");
+                    
+                }
+                rs.close();
+                stmt.close();
+                connct1.close();
+                
+            }catch(Exception e){
+                
+                System.out.println("Errore nella stampa ");
+                System.exit(0);
+                
+            }
+                
+            
+        }
 }
