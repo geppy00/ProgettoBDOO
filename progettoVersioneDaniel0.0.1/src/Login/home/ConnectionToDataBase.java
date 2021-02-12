@@ -1,6 +1,7 @@
 
 package Login.home;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel; 
 
 public class ConnectionToDataBase {
     
@@ -11,7 +12,7 @@ public class ConnectionToDataBase {
 		try {
 			
 			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SDB_Procuratori", "postgres", "postgres");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ProjectOOBD", "postgres", "SNOWEBELLO12");
 			
 			if(connection != null) {
 				System.out.println("Connessione al database effettuata con successo ");
@@ -83,38 +84,34 @@ public class ConnectionToDataBase {
 
 	/*CODICE PER FAR COMPARIRE SULLA CONSOLE LA TABELLA DEL NOSTRO DATABASE (SELECT OPERATION)*/
 	public int selectOperation(String nomeUtente, String passwordUtente) {
-		Statement stmt = null;
-		Connection connection = connectionToDatabase();
+            Statement stmt = null;
+            Connection connection = connectionToDatabase();
 
-		try {
-			stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM loginUtente;");
-			while(rs.next()) {
-                            
-                            String passwordAdmin = "admin";
-                            String utenteAdmin = "admin";
+            try {
+                stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM login_tbl;");
+		while(rs.next()) {
                           
-				String nomeUtenteSalvato = rs.getString("utente");
-                                String passwordUtenteSalvato = rs.getString("passwordUtente");
-                                if (nomeUtenteSalvato.equals(nomeUtente)&& passwordUtenteSalvato.equals(passwordUtente)){
-                                    return 1;
-                                
-                                    
-                                }if(passwordUtenteSalvato.equals(passwordAdmin) && nomeUtenteSalvato.equals(utenteAdmin)){
-                                    return 2;
-                                }
-                                
-                                   
-			}
-			rs.close();
-			stmt.close();
-			connection.close();
- 		}catch(Exception e) {
- 			System.err.println(e.getClass().getName()+": "+e.getMessage());
-			System.exit(0);
+                    String nomeUtenteSalvato = rs.getString("username");
+                    String passwordUtenteSalvato = rs.getString("pswd");
+                    if (nomeUtenteSalvato.equals(nomeUtente)&& passwordUtenteSalvato.equals(passwordUtente)){
+                        if(passwordUtenteSalvato.equals("admin") && nomeUtenteSalvato.equals("admin"))
+                            return 0;
+                        else
+                            return 1;
+                    }
+        
 		}
-		//System.out.println("La stampa della tabella è andata a buon fine");
-                return 0; 
+                rs.close();
+                stmt.close();
+            	connection.close();
+            }
+            catch(Exception e) {
+                System.err.println(e.getClass().getName()+": "+e.getMessage());
+                System.exit(0);
+            }
+            
+            return -1;
 	}
 
 	/*CODICE PER AGGIORNARE I RECORD DELLA NOSTRA TABELLA DEL NOSTRO DATABASE (UPDATE OPERATION)*/
@@ -218,5 +215,37 @@ public class ConnectionToDataBase {
             }
                 
             
+        }
+        
+        public void prendiDatiProcuratori(SezioneProcuratori jTable1){
+            Statement stmt = null;
+            Connection connct1 = connectionToDatabase();
+            
+            try{
+                
+                stmt = connct1.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from procuratori_tbl");
+                
+                while(rs.next()){
+                    
+                    String id = rs.getString("code_id");
+                    String codiceFiscale = rs.getString("codice_fiscale");
+                    String nome = rs.getString("nome");
+                    String iban = rs.getString("iban");
+                    
+                    //Array di stringhe per inserire i dati nella jtable
+                    String tbData[]= {id, codiceFiscale, nome, iban};
+                    DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel; //ERRORE METODO getModel NON PRESENTE
+                }
+                rs.close();
+                stmt.close();
+                connct1.close();
+                
+            }catch(Exception e){
+                
+                System.out.println("Errore nella stampa ");
+                System.exit(0);
+                
+            }
         }
 }

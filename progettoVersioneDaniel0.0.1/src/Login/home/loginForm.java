@@ -112,25 +112,22 @@ public class loginForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //TASTO X PER TERMINARE IL PROGRAMMA;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
+    
+    //TASTO PER ESEGUIRE IL LOGIN
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        String passwordUtente, nomeUtente = jTextField1.getText();
        passwordUtente = jPasswordField1.getText();
-       boolean ritorno = c1.accedi(nomeUtente, passwordUtente);
-       /*if(ritorno == true)
-           System.out.println("Accesso effettuato con successo");
-       else
-           System.out.println("Accesso non effettuato con successo");
-       */
+       boolean ritorno = c1.accedi(nomeUtente, passwordUtente, this);
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -148,15 +145,7 @@ public class loginForm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(loginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
-
-     
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new loginForm().setVisible(true);
-            }
-        });*/
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
