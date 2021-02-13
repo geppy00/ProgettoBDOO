@@ -128,7 +128,7 @@ public class ConnectionToDataBase {
 		}
 	}
         
-        public void prendiDatiProcuratori(){
+        /*public void prendiDatiProcuratori(){
             Statement stmt = null;
             Connection connct1 = connectionToDatabase();
             
@@ -147,6 +147,8 @@ public class ConnectionToDataBase {
                     //Array di stringhe per inserire i dati nella jtable
                     String tbData[]= {id, codiceFiscale, nome, iban};
                     DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
+                    //Aggiungiamo ogni stringa dell'array nella jtable
+                    tblModel.addRow(tbData);
                 }
                 rs.close();
                 stmt.close();
@@ -158,5 +160,5 @@ public class ConnectionToDataBase {
                 System.exit(0);
                 
             }
-        }
+        }*/
 }

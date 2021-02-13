@@ -139,7 +139,7 @@ public class SezioneProcuratori extends javax.swing.JFrame {
     }//GEN-LAST:event_aggiungereProcuratoreJBActionPerformed
 
     private void visualizzaDatiProcuratoriJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizzaDatiProcuratoriJBActionPerformed
-        /*Statement stmt = null;
+        Statement stmt = null;
         ConnectionToDataBase db1 = new ConnectionToDataBase();
         Connection connct1 = db1.connectionToDatabase();
             
@@ -170,7 +170,7 @@ public class SezioneProcuratori extends javax.swing.JFrame {
                 System.out.println("Errore nella stampa ");
                 System.exit(0);
                 
-            }*/
+            }
     }//GEN-LAST:event_visualizzaDatiProcuratoriJBActionPerformed
 
 
