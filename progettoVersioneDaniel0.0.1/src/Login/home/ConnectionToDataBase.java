@@ -2,6 +2,7 @@
 package Login.home;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel; 
+import javax.swing.JTable;
 
 public class ConnectionToDataBase {
     
@@ -26,61 +27,7 @@ public class ConnectionToDataBase {
 		
 		return connection;
     }
-
-	/*CODICE PER CREARE UNA TABELLA (CREATE TABLE)*/
-	public void createTable() {
-		Connection connection = connectionToDatabase();
-		Statement stmt = null;
-		try {
-			stmt = connection.createStatement();
-			String sql = "CREATE TABLE Procuratori"+
-						 "(ID INT PRIMARY KEY NOT NULL,"+
-						 "NOME TEXT NOT NULL,"+
-						 "COGNOME TEXT NOT NULL,"+
-						 "ETA INT NOT NULL)";
-			stmt.executeUpdate(sql);
-			stmt.close();
-			connection.close();
-		}catch(Exception e){
-			System.err.println(e.getClass().getName()+": "+e.getMessage());
-			System.exit(0);
-		}
-		System.out.println("La tabella è stata creata con successo");
-	}
-
-	/*CODICE PER INSERIRE I DATI NELLA TABELLA (INSERT OPERATION)*/
-	public void insertOperation() {
-		Statement stmt = null;
-		Connection connection = connectionToDatabase();
-
-		try {	
-			stmt = connection.createStatement();
-			connection.setAutoCommit(false);
-			String sql = "INSERT INTO PERSONA (ID, NOME, COGNOME, ETA)"+
-						 "VALUES (1, 'Daniil', 'Khalikov', '21')";
-			stmt.executeUpdate(sql);
-			
-			sql = "INSERT INTO PERSONA (ID, NOME, COGNOME, ETA)"+
-					 "VALUES (2, 'Jeft faria', 'Matamba', '24')";
-			stmt.executeUpdate(sql);
-			
-			sql = "INSERT INTO PERSONA (ID, NOME, COGNOME, ETA)"+
-					 "VALUES (3, 'Giuseppe', 'Malafronte', '20')";
-			stmt.executeUpdate(sql);
-			
-			sql = "INSERT INTO PERSONA (ID, NOME, COGNOME, ETA)"+
-					 "VALUES (4, 'Nicola', 'Palmieri', '45')";
-			stmt.executeUpdate(sql);
-			
-			stmt.close();
-			connection.commit();
-			connection.close();
-		}catch(Exception e) {
-			System.err.println(e.getClass().getName()+": "+e.getMessage());
-			System.exit(0);
-		}
-		System.out.println("I record sono stati creati correttamente");
-	}
+        
 
 	/*CODICE PER FAR COMPARIRE SULLA CONSOLE LA TABELLA DEL NOSTRO DATABASE (SELECT OPERATION)*/
 	public int selectOperation(String nomeUtente, String passwordUtente) {
@@ -181,43 +128,7 @@ public class ConnectionToDataBase {
 		}
 	}
         
-        public void stampaTabellaTerminale(){
-            Statement stmt = null;
-            Connection connct1 = connectionToDatabase();
-            
-            try{
-                
-                stmt = connct1.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from UTENTI");
-                
-                while(rs.next()){
-                    
-                    int id = rs.getInt("id");
-                    String nome = rs.getString("nome");
-                    String cognome = rs.getString("cognome");
-                    int eta = rs.getInt("eta");
-                    System.out.println("ID = "+id);
-                    System.out.println("Nome = "+nome);
-                    System.out.println("Cognome = "+cognome);
-                    System.out.println("Eta = "+eta);
-                    System.out.println("");
-                    
-                }
-                rs.close();
-                stmt.close();
-                connct1.close();
-                
-            }catch(Exception e){
-                
-                System.out.println("Errore nella stampa ");
-                System.exit(0);
-                
-            }
-                
-            
-        }
-        
-        public void prendiDatiProcuratori(SezioneProcuratori jTable1){
+        public void prendiDatiProcuratori(){
             Statement stmt = null;
             Connection connct1 = connectionToDatabase();
             
@@ -235,7 +146,7 @@ public class ConnectionToDataBase {
                     
                     //Array di stringhe per inserire i dati nella jtable
                     String tbData[]= {id, codiceFiscale, nome, iban};
-                    DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel; //ERRORE METODO getModel NON PRESENTE
+                    DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
                 }
                 rs.close();
                 stmt.close();

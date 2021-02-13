@@ -5,6 +5,7 @@
  */
 package Login.home;
 
+
 /**
  *
  * @author Giuseppe
@@ -101,6 +102,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void bottonForProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonForProcuratoreJBActionPerformed
         c2.apriSezioneProcuratori();
+        
     }//GEN-LAST:event_bottonForProcuratoreJBActionPerformed
 
 
