@@ -8,6 +8,7 @@ public class Controller {
     loginForm f1;
     AdminPage f2;
     SezioneProcuratori f3;
+    InserireNuovoProcuratore f4;
     
     public static void main(String[] args) {
        
@@ -50,8 +51,18 @@ public class Controller {
     }
     
      public void tornaIndietro(){
-         f2.setVisible(true);
-         f3.setVisible(false);
+        f2.setVisible(true);
+        f3.setVisible(false);
+     }
+     
+     public void apriInserireNuovoProcuratore(){
+        f4 = new InserireNuovoProcuratore(this);
+        f4.setVisible(true);
+     }
+     
+     public void okButtonInserimento(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, String dataDiNascitaCopiato, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
+          ConnectionToDataBase db1 = new ConnectionToDataBase();
+          db1.InserisciNuovoProcuratore(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, dataDiNascitaCopiato, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
      }
      
 }

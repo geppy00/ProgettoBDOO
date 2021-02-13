@@ -135,7 +135,7 @@ public class SezioneProcuratori extends javax.swing.JFrame {
     }//GEN-LAST:event_tornaIndietroJBActionPerformed
 
     private void aggiungereProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiungereProcuratoreJBActionPerformed
-        // TODO add your handling code here:
+        c2.apriInserireNuovoProcuratore();
     }//GEN-LAST:event_aggiungereProcuratoreJBActionPerformed
 
     private void visualizzaDatiProcuratoriJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizzaDatiProcuratoriJBActionPerformed

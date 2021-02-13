@@ -128,6 +128,37 @@ public class ConnectionToDataBase {
 		}
 	}
         
+        public void InserisciNuovoProcuratore(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, String dataDiNascitaCopiato, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
+            Statement stmt = null;
+		Connection connection = connectionToDatabase();
+
+		try {	
+			connection.setAutoCommit(false);
+			String sql = "INSERT INTO procuratori_tbl (code_id, codice_fiscale, nome, cognome, data_di_nascita, citta_nascita, via, citta, cap, iban)"+
+						 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                         PreparedStatement preparedStmt = connection.prepareStatement(sql);
+                         preparedStmt.setString(1, codiceIDCopiato);
+                         preparedStmt.setString(2, codiceFiscCopiato);
+                         preparedStmt.setString(3, nomeCopiato);
+                         preparedStmt.setString(4, cognomeCopiato);
+                         preparedStmt.setString(5, dataDiNascitaCopiato);
+                         preparedStmt.setString(6, cittaNascitaCopiato);
+                         preparedStmt.setString(7, viaCopiato);
+                         preparedStmt.setString(8, cittaResidenzaCopiato);
+                         preparedStmt.setInt(9, capCopiato);
+                         preparedStmt.setString(10, ibanCopiato);
+                  
+			preparedStmt.execute();
+			
+			connection.commit();
+			connection.close();
+		}catch(Exception e) {
+			System.err.println(e.getClass().getName()+": "+e.getMessage());
+			System.exit(0);
+		}
+		System.out.println("I record sono stati creati correttamente");
+        }
+        
         /*public void prendiDatiProcuratori(){
             Statement stmt = null;
             Connection connct1 = connectionToDatabase();
