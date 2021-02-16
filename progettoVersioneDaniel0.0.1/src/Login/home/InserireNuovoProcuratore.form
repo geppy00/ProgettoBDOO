@@ -46,8 +46,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="dataNascitaJL" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dataNascitaInputJTF" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="dateOfBirth" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="cittaNascitaJL" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cittaNascitaJTF" min="-2" pref="120" max="-2" attributes="0"/>
@@ -92,13 +92,15 @@
                   <Component id="nomeInputJTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cognomeJL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cognomeInputJTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dataNascitaJL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dataNascitaInputJTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cittaNascitaJL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cittaNascitaJTF" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cognomeJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cognomeInputJTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataNascitaJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cittaNascitaJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cittaNascitaJTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="dateOfBirth" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -152,8 +154,6 @@
         <Property name="text" type="java.lang.String" value="Data di nascita"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dataNascitaInputJTF">
-    </Component>
     <Component class="javax.swing.JLabel" name="cittaNascitaJL">
       <Properties>
         <Property name="text" type="java.lang.String" value="Citt&#xe0; nascita"/>
@@ -196,6 +196,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okButtonJBActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="dateOfBirth">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

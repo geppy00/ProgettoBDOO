@@ -128,7 +128,7 @@ public class ConnectionToDataBase {
 		}
 	}
         
-        public void InserisciNuovoProcuratore(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, String dataDiNascitaCopiato, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
+        public void InserisciNuovoProcuratore(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, Date sqlDate, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
             Statement stmt = null;
 		Connection connection = connectionToDatabase();
 
@@ -141,7 +141,7 @@ public class ConnectionToDataBase {
                          preparedStmt.setString(2, codiceFiscCopiato);
                          preparedStmt.setString(3, nomeCopiato);
                          preparedStmt.setString(4, cognomeCopiato);
-                         preparedStmt.setString(5, dataDiNascitaCopiato);
+                         preparedStmt.setDate(5, sqlDate);
                          preparedStmt.setString(6, cittaNascitaCopiato);
                          preparedStmt.setString(7, viaCopiato);
                          preparedStmt.setString(8, cittaResidenzaCopiato);

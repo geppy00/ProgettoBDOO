@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Login.home;
-import javax.swing.JTextField;
-import java.lang.reflect.Field;
+
 /**
  *
  * @author Giuseppe
@@ -39,7 +34,6 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
         cognomeJL = new javax.swing.JLabel();
         cognomeInputJTF = new javax.swing.JTextField();
         dataNascitaJL = new javax.swing.JLabel();
-        dataNascitaInputJTF = new javax.swing.JTextField();
         cittaNascitaJL = new javax.swing.JLabel();
         cittaNascitaJTF = new javax.swing.JTextField();
         viaJL = new javax.swing.JLabel();
@@ -51,6 +45,7 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
         ibanJL = new javax.swing.JLabel();
         ibanInputJTF = new javax.swing.JTextField();
         okButtonJB = new javax.swing.JButton();
+        dateOfBirth = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +76,8 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
             }
         });
 
+        dateOfBirth.setDateFormatString("dd-MM-yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,8 +104,8 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(dataNascitaJL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dataNascitaInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
                         .addComponent(cittaNascitaJL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cittaNascitaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,13 +142,14 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
                     .addComponent(nomeJL)
                     .addComponent(nomeInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cognomeJL)
-                    .addComponent(cognomeInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dataNascitaJL)
-                    .addComponent(dataNascitaInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cittaNascitaJL)
-                    .addComponent(cittaNascitaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cognomeJL)
+                        .addComponent(cognomeInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dataNascitaJL)
+                        .addComponent(cittaNascitaJL)
+                        .addComponent(cittaNascitaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viaJL)
@@ -170,22 +168,28 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void okButtonJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonJBActionPerformed
         String capCopiatoStringa = capInputJTF.getText();
-        int capCopiato = Integer.parseInt(capCopiatoStringa);
         String cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, dataDiNascitaCopiato, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato;
+
+        int capCopiato = Integer.parseInt(capCopiatoStringa);
+        
+       java.sql.Date date = new java.sql.Date(dateOfBirth.getDate().getTime()); //Conversione data da java a sql per inserirla nel database
+        
         
         cittaResidenzaCopiato = cittaInputJTF.getText();
         codiceFiscCopiato =codeFiscInputJTF.getText();
         cognomeCopiato=cognomeInputJTF.getText();
-        dataDiNascitaCopiato=dataNascitaInputJTF.getText();
+        //dataDiNascitaCopiato=dataNascitaInputJTF.getText();
         ibanCopiato=ibanInputJTF.getText();
         nomeCopiato=nomeInputJTF.getText();
         viaCopiato=viaInputJTF.getText();
         codiceIDCopiato=codeIDInputJTF.getText();
         cittaNascitaCopiato=cittaNascitaJTF.getText();
         
-        c3.okButtonInserimento(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, dataDiNascitaCopiato, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
+        c3.okButtonInserimento(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, (java.sql.Date) date, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
     }//GEN-LAST:event_okButtonJBActionPerformed
 
     
@@ -204,8 +208,8 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
     private javax.swing.JLabel codiceFiscaleJL;
     private javax.swing.JTextField cognomeInputJTF;
     private javax.swing.JLabel cognomeJL;
-    private javax.swing.JTextField dataNascitaInputJTF;
     private javax.swing.JLabel dataNascitaJL;
+    private com.toedter.calendar.JDateChooser dateOfBirth;
     private javax.swing.JTextField ibanInputJTF;
     private javax.swing.JLabel ibanJL;
     private javax.swing.JTextField nomeInputJTF;
