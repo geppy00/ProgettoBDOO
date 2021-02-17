@@ -9,6 +9,7 @@ public class Controller {
     AdminPage f2;
     SezioneProcuratori f3;
     InserireNuovoProcuratore f4;
+    EliminaProcuratore f5;
     
     public static void main(String[] args) {
        
@@ -63,6 +64,16 @@ public class Controller {
      public void okButtonInserimento(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, Date sqlDate, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
           ConnectionToDataBase db1 = new ConnectionToDataBase();
           db1.InserisciNuovoProcuratore(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, sqlDate, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
+     }
+     
+     public void apriFinestraEliminaProcuratore(){
+         f5 = new EliminaProcuratore(this);
+         f5.setVisible(true);
+     }
+     
+     public void cancellaProcuratore(String idEliminare){
+         ConnectionToDataBase db1 = new ConnectionToDataBase();
+         db1.deleteOperation(idEliminare);
      }
      
 }

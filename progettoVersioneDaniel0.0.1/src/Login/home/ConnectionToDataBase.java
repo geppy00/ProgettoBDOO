@@ -96,31 +96,15 @@ public class ConnectionToDataBase {
 	}
 
 	/*CODICE PER ELIMINARE I RECORD DELLA NOSTRA TABELLA DEL NOSTRO DATABASE (DELETE OPERATION)*/
-	public void deleteOperation() {
+	public void deleteOperation(String idEliminare) {
 		Statement stmt = null;
 		Connection connection = connectionToDatabase();
 
 		try {
-			connection.setAutoCommit(false);
-			stmt = connection.createStatement();
-			String sql = "DELETE FROM PERSONA WHERE ID = 3";
-			stmt.executeUpdate(sql);
-			connection.commit();
-			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM PERSONA;");
-			while(rs.next()) {
-				int id = rs.getInt("id");
-				String nome = rs.getString("nome");
-				String cognome = rs.getString("cognome");
-				int eta = rs.getInt("eta");
-				System.out.println("ID = " + id);
-				System.out.println("NOME = " + nome);
-				System.out.println("COGNOME = " + cognome);
-				System.out.println("età = " + eta);
-				System.out.println("");
-			}
-			rs.close();
-			stmt.close();
+                        String sql = "DELETE FROM procuratori_tbl WHERE code_id =?";
+                        PreparedStatement preparedStmt = connection.prepareStatement(sql);
+                        preparedStmt.setString(1, idEliminare);
+                        preparedStmt.executeUpdate();
 			connection.close();
 		}catch(Exception e) {
 			System.err.println(e.getClass().getName()+": "+e.getMessage());

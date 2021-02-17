@@ -61,6 +61,11 @@ public class SezioneProcuratori extends javax.swing.JFrame {
         });
 
         eliminaProcuratoreJB.setText("Elimina Procuratore");
+        eliminaProcuratoreJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminaProcuratoreJBActionPerformed(evt);
+            }
+        });
 
         cercareProcuratoreJB.setText("Cerca Procuratore");
 
@@ -173,14 +178,18 @@ public class SezioneProcuratori extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_visualizzaDatiProcuratoriJBActionPerformed
 
+    private void eliminaProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminaProcuratoreJBActionPerformed
+      c2.apriFinestraEliminaProcuratore();
+    }//GEN-LAST:event_eliminaProcuratoreJBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiungereProcuratoreJB;
     private javax.swing.JButton cercareProcuratoreJB;
     private javax.swing.JButton eliminaProcuratoreJB;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JButton modificareDatiProcuratoreJB;
     private javax.swing.JButton tornaIndietroJB;
     private javax.swing.JButton visualizzaDatiProcuratoriJB;
