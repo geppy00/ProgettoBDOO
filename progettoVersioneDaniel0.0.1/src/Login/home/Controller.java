@@ -10,6 +10,7 @@ public class Controller {
     SezioneProcuratori f3;
     InserireNuovoProcuratore f4;
     EliminaProcuratore f5;
+    AggiornaDatiProcuratore f6;
     
     public static void main(String[] args) {
        
@@ -76,5 +77,14 @@ public class Controller {
          db1.deleteOperation(idEliminare);
      }
      
+     public void apriFinestraAggiornaDatiProcuratore(){
+         f6 = new AggiornaDatiProcuratore(this);
+         f6.setVisible(true);
+     }
+     
+     public void aggiornaProcuratore(String idCopiato){
+          ConnectionToDataBase db1 = new ConnectionToDataBase();
+          db1.updateProcuratori(idCopiato);
+     }
 }
 

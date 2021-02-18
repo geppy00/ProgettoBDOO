@@ -52,6 +52,11 @@ public class SezioneProcuratori extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         modificareDatiProcuratoreJB.setText("Modifica i dati");
+        modificareDatiProcuratoreJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificareDatiProcuratoreJBActionPerformed(evt);
+            }
+        });
 
         aggiungereProcuratoreJB.setText("Aggiungi un procuratore");
         aggiungereProcuratoreJB.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +186,10 @@ public class SezioneProcuratori extends javax.swing.JFrame {
     private void eliminaProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminaProcuratoreJBActionPerformed
       c2.apriFinestraEliminaProcuratore();
     }//GEN-LAST:event_eliminaProcuratoreJBActionPerformed
+
+    private void modificareDatiProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificareDatiProcuratoreJBActionPerformed
+        c2.apriFinestraAggiornaDatiProcuratore();
+    }//GEN-LAST:event_modificareDatiProcuratoreJBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

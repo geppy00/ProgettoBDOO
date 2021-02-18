@@ -143,37 +143,31 @@ public class ConnectionToDataBase {
 		System.out.println("I record sono stati creati correttamente");
         }
         
-        /*public void prendiDatiProcuratori(){
-            Statement stmt = null;
-            Connection connct1 = connectionToDatabase();
-            
-            try{
-                
-                stmt = connct1.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from procuratori_tbl");
-                
-                while(rs.next()){
-                    
-                    String id = rs.getString("code_id");
-                    String codiceFiscale = rs.getString("codice_fiscale");
-                    String nome = rs.getString("nome");
-                    String iban = rs.getString("iban");
-                    
-                    //Array di stringhe per inserire i dati nella jtable
-                    String tbData[]= {id, codiceFiscale, nome, iban};
-                    DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
-                    //Aggiungiamo ogni stringa dell'array nella jtable
-                    tblModel.addRow(tbData);
-                }
-                rs.close();
-                stmt.close();
-                connct1.close();
-                
-            }catch(Exception e){
-                
+       public void updateProcuratori(String idCopiato){
+           Connection connection = connectionToDatabase();
+          PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try{
+            stmt = connection.prepareStatement("SELECT * FROM procuratori_tbl WHERE code_id LIKE ?");
+            stmt.setString(1, idCopiato+"%");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+               String id = rs.getString("code_id");
+               String codiceFiscale = rs.getString("codice_fiscale");
+               String nome = rs.getString("nome");
+               String cognome = rs.getString("cognome");
+               Date d = rs.getDate("data_di_nascita");
+               String cittaNascita = rs.getString("citta_nascita");
+               String via =  rs.getString("via");
+               String cittaResidenza =  rs.getString("citta");
+               int cap = rs.getInt("cap");
+               String iban =  rs.getString("iban");
+               
+            }
+        }catch(Exception e){
                 System.out.println("Errore nella stampa ");
                 System.exit(0);
-                
             }
-        }*/
+       }
 }

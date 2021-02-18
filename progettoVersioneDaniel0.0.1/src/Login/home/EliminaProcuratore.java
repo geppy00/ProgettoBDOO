@@ -17,6 +17,9 @@ public class EliminaProcuratore extends javax.swing.JFrame {
     /**
      * Creates new form EliminaProcuratore
      */
+     public EliminaProcuratore(){
+         
+     }
     public EliminaProcuratore(Controller theContreller) {
         c5 = theContreller;
         this.setLocationRelativeTo(null);
@@ -114,43 +117,37 @@ public class EliminaProcuratore extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void visualizzaDatiInTabella(){
-        String idVisualizzare = prendiMatricolaDaEliminareJTF.getText();
         ConnectionToDataBase db1 = new ConnectionToDataBase();
         Connection connct1 = db1.connectionToDatabase();
-         Statement stmt = null;
-     
+        String idCopiato = prendiMatricolaDaEliminareJTF.getText();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         
         try{
-            /*String sql = "SELECT FROM procuratori_tbl WHERE code_id =?";
-            PreparedStatement preparedStmt = connct1.prepareStatement(sql);
-            preparedStmt.setString(1, idVisualizzare);
-            preparedStmt.executeUpdate();*/
-            
-             stmt = connct1.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT FROM procuratori_tbl");
-              while(rs.next()){
-                    
-                    String id = rs.getString("code_id");
-                    String cognome = rs.getString("cognome");
-                    String nome = rs.getString("nome");
-                    String codiceFiscale = rs.getString("codice_fiscale");
-                    
-                    //Array di stringhe per inserire i dati nella jtable
-                    String tbData[]= {id, codiceFiscale, nome, cognome};
-                    DefaultTableModel tblModel = (DefaultTableModel)visualizzaProcuratoreDaEliminareJT.getModel();
-                    //Aggiungiamo ogni stringa dell'array nella jtable
-                    tblModel.addRow(tbData);
-                }
-              
-              rs.close();
-                stmt.close();
-                connct1.close();
-           
-            System.out.println("e' andato al buon fine");
+            stmt = connct1.prepareStatement("SELECT * FROM procuratori_tbl WHERE code_id LIKE ?");
+            stmt.setString(1, idCopiato+"%");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+               System.out.println("SONO NEL WHILE");
+               String id = rs.getString("code_id");
+               String codiceFiscale = rs.getString("codice_fiscale");
+               String nome = rs.getString("nome");
+               String cognome = rs.getString("cognome");
+               System.out.println("DATI PRESI DALLA TABELLA: "+id+codiceFiscale+nome+cognome);
+               System.out.println("SONO NEL WHILE GIU");
+               
+               //Array di stringhe per inserire i dati nella jtable
+               String tbData[]= {nome, cognome, codiceFiscale, id};
+               DefaultTableModel tblModel = (DefaultTableModel)visualizzaProcuratoreDaEliminareJT.getModel();
+               //Aggiungiamo ogni stringa dell'array nella jtable
+               tblModel.addRow(tbData);
+               
+            }
+            System.out.println("BUON FINE alla fine");
         }catch(Exception e){
-            System.out.println("Errore nella stampa ");
-            System.exit(0);
-        }
+                System.out.println("Errore nella stampa ");
+                System.exit(0);
+            }
     }
     
     private void btnCercaJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaJBActionPerformed
