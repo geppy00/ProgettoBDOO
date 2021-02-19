@@ -172,6 +172,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cerca Procuratore"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cercareProcuratoreJBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="tornaIndietroJB">
       <Properties>
@@ -183,7 +186,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="visualizzaDatiProcuratoriJB">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="VISUALIZZA TUTTI I PROCURATORI"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visualizzaDatiProcuratoriJBActionPerformed"/>

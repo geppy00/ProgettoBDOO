@@ -144,27 +144,32 @@ public class ConnectionToDataBase {
         }
         
        public void updateProcuratori(String idCopiato){
-           Connection connection = connectionToDatabase();
-          PreparedStatement stmt = null;
+        AggiornaDatiProcuratore updateProc = new AggiornaDatiProcuratore();
+        Connection connection = connectionToDatabase();
+        PreparedStatement stmt = null;
         ResultSet rs = null;
+        String cognome= null;
         
         try{
             stmt = connection.prepareStatement("SELECT * FROM procuratori_tbl WHERE code_id LIKE ?");
             stmt.setString(1, idCopiato+"%");
             rs = stmt.executeQuery();
             while(rs.next()){
-               String id = rs.getString("code_id");
+               /*String id = rs.getString("code_id");
                String codiceFiscale = rs.getString("codice_fiscale");
-               String nome = rs.getString("nome");
-               String cognome = rs.getString("cognome");
-               Date d = rs.getDate("data_di_nascita");
+               String nome = rs.getString("nome");*/
+               cognome = rs.getString("cognome");
+               /*Date d = rs.getDate("data_di_nascita");
                String cittaNascita = rs.getString("citta_nascita");
                String via =  rs.getString("via");
                String cittaResidenza =  rs.getString("citta");
                int cap = rs.getInt("cap");
-               String iban =  rs.getString("iban");
+               String iban =  rs.getString("iban");*/
                
+               updateProc.stampaCognome(cognome);
             }
+            
+            
         }catch(Exception e){
                 System.out.println("Errore nella stampa ");
                 System.exit(0);

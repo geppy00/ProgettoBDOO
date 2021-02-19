@@ -72,6 +72,11 @@ public class EliminaProcuratore extends javax.swing.JFrame {
         });
 
         btnTornaIndiertroJB.setText("TORNA INDIETRO");
+        btnTornaIndiertroJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTornaIndiertroJBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,13 +133,10 @@ public class EliminaProcuratore extends javax.swing.JFrame {
             stmt.setString(1, idCopiato+"%");
             rs = stmt.executeQuery();
             while(rs.next()){
-               System.out.println("SONO NEL WHILE");
                String id = rs.getString("code_id");
                String codiceFiscale = rs.getString("codice_fiscale");
                String nome = rs.getString("nome");
                String cognome = rs.getString("cognome");
-               System.out.println("DATI PRESI DALLA TABELLA: "+id+codiceFiscale+nome+cognome);
-               System.out.println("SONO NEL WHILE GIU");
                
                //Array di stringhe per inserire i dati nella jtable
                String tbData[]= {nome, cognome, codiceFiscale, id};
@@ -143,7 +145,7 @@ public class EliminaProcuratore extends javax.swing.JFrame {
                tblModel.addRow(tbData);
                
             }
-            System.out.println("BUON FINE alla fine");
+            
         }catch(Exception e){
                 System.out.println("Errore nella stampa ");
                 System.exit(0);
@@ -159,6 +161,10 @@ public class EliminaProcuratore extends javax.swing.JFrame {
       System.out.println(idEliminare);
       c5.cancellaProcuratore(idEliminare);
     }//GEN-LAST:event_btnEliminaProcuratoreJBActionPerformed
+
+    private void btnTornaIndiertroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTornaIndiertroJBActionPerformed
+        c5.tornaIndietroSezioneProcuratori();
+    }//GEN-LAST:event_btnTornaIndiertroJBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

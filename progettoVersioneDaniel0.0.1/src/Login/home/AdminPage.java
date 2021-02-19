@@ -34,6 +34,7 @@ public class AdminPage extends javax.swing.JFrame {
         bottonForSportivoJB = new javax.swing.JButton();
         bottonForSponsorJB = new javax.swing.JButton();
         titoloFinestraJL = new javax.swing.JLabel();
+        tornaIndietroLoginJB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,22 +62,34 @@ public class AdminPage extends javax.swing.JFrame {
         titoloFinestraJL.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titoloFinestraJL.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        tornaIndietroLoginJB.setText("TORNA A LOGIN");
+        tornaIndietroLoginJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tornaIndietroLoginJBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bottonForProcuratoreJB)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(bottonForSponsorJB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                        .addComponent(bottonForSportivoJB))
+                        .addComponent(bottonForProcuratoreJB)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(bottonForSponsorJB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                                .addComponent(bottonForSportivoJB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(131, 131, 131)
+                                .addComponent(titoloFinestraJL)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(titoloFinestraJL)
+                        .addComponent(tornaIndietroLoginJB)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -90,7 +103,9 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(bottonForProcuratoreJB)
                     .addComponent(bottonForSportivoJB)
                     .addComponent(bottonForSponsorJB))
-                .addGap(129, 129, 129))
+                .addGap(99, 99, 99)
+                .addComponent(tornaIndietroLoginJB)
+                .addContainerGap())
         );
 
         pack();
@@ -105,11 +120,16 @@ public class AdminPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bottonForProcuratoreJBActionPerformed
 
+    private void tornaIndietroLoginJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroLoginJBActionPerformed
+        c2.tornaIndietroLogin();
+    }//GEN-LAST:event_tornaIndietroLoginJBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bottonForProcuratoreJB;
     private javax.swing.JButton bottonForSponsorJB;
     private javax.swing.JButton bottonForSportivoJB;
     private javax.swing.JLabel titoloFinestraJL;
+    private javax.swing.JButton tornaIndietroLoginJB;
     // End of variables declaration//GEN-END:variables
 }

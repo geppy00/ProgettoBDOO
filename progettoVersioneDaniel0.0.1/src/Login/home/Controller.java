@@ -11,6 +11,7 @@ public class Controller {
     InserireNuovoProcuratore f4;
     EliminaProcuratore f5;
     AggiornaDatiProcuratore f6;
+    CercaProcuratore f7;
     
     public static void main(String[] args) {
        
@@ -85,6 +86,32 @@ public class Controller {
      public void aggiornaProcuratore(String idCopiato){
           ConnectionToDataBase db1 = new ConnectionToDataBase();
           db1.updateProcuratori(idCopiato);
+     }
+     
+     public void tornaIndietroInserireNuovoProcuratore(){
+        f4.setVisible(false);
+        f3.setVisible(true);
+     }
+     
+     public void tornaIndietroLogin(){
+        f2.setVisible(false);
+        f1 = new loginForm(this);
+        f1.setVisible(true);
+     }
+     
+     public void tornaIndietroSezioneProcuratori(){
+        f5.setVisible(false);
+        f3.setVisible(true);
+     }
+     
+     public void apriFinestraCercaProcuratore(){
+        f7 = new CercaProcuratore(this);
+        f7.setVisible(true);
+     }
+     
+     public void tornaIndietroDaCercaProcuratore(){
+          f7.setVisible(false);
+          f3.setVisible(true);
      }
 }
 

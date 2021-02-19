@@ -11,11 +11,16 @@ package Login.home;
  */
 public class AggiornaDatiProcuratore extends javax.swing.JFrame {
     Controller c6;
+    
+    public AggiornaDatiProcuratore(){
+        
+    }
     public AggiornaDatiProcuratore(Controller theController) {
         c6 = theController;
         this.setLocationRelativeTo(null);
         initComponents();
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,15 +223,21 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void stampaCognome(String cognome){
+        modificaCognomeJTF.setText(cognome);
+       System.out.println(cognome);
+    }
+    
     private void inputInserimentoMatricolaJTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputInserimentoMatricolaJTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputInserimentoMatricolaJTFActionPerformed
 
     private void aggiornaDatiProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaDatiProcuratoreJBActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_aggiornaDatiProcuratoreJBActionPerformed
 
     private void cercaMatricolaJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaMatricolaJBActionPerformed
+      //stampaCognome(cognome);
       c6.aggiornaProcuratore(inputInserimentoMatricolaJTF.getText());
     }//GEN-LAST:event_cercaMatricolaJBActionPerformed
 
@@ -257,4 +268,7 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
     private javax.swing.JLabel nomeJL;
     private javax.swing.JLabel viaJL;
     // End of variables declaration//GEN-END:variables
+
+   
+
 }
