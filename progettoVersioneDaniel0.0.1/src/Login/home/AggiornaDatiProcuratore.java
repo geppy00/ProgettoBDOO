@@ -223,22 +223,49 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void stampaCognome(String cognome){
-        modificaCognomeJTF.setText(cognome);
-       System.out.println(cognome);
-    }
-    
     private void inputInserimentoMatricolaJTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputInserimentoMatricolaJTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputInserimentoMatricolaJTFActionPerformed
 
     private void aggiornaDatiProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaDatiProcuratoreJBActionPerformed
-        
+      String[] datiProc = new String[10];
+      //datiProc = c6.aggiornaProcuratore(inputInserimentoMatricolaJTF.getText());
+      
+      String idCopiatoPerModificareDatiProc = inputInserimentoMatricolaJTF.getText();
+      
+      datiProc[0] = modificaMatricolaJTF.getText();
+      datiProc[1] = modificaCodiceFiscaleJTF.getText();
+      datiProc[2] = modificaNomeJTF.getText();
+      datiProc[3] = modificaCognomeJTF.getText();
+      datiProc[4] = modificaDataNascitaJTF.getText();
+      datiProc[5] = modificaCittaNascitaJTF.getText();
+      datiProc[6] = modificaViaJTF.getText();
+      datiProc[7] = modificaCittaResidenzaJTF.getText();
+      datiProc[8] = modificaCapJTF.getText();
+      datiProc[9] = modificaIbanJTF.getText();
+      
+      for(int i=0;i<10;i++){
+          System.out.println(datiProc[i]);
+      }
+      
+      c6.aggiornaDatiProcuratore(datiProc, idCopiatoPerModificareDatiProc);
     }//GEN-LAST:event_aggiornaDatiProcuratoreJBActionPerformed
 
     private void cercaMatricolaJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaMatricolaJBActionPerformed
-      //stampaCognome(cognome);
-      c6.aggiornaProcuratore(inputInserimentoMatricolaJTF.getText());
+      String[] datiProc = new String[10];
+      datiProc = c6.prendiDatiProcuratorePerAggiornare(inputInserimentoMatricolaJTF.getText());
+      
+      modificaMatricolaJTF.setText(datiProc[0]);
+      modificaCodiceFiscaleJTF.setText(datiProc[1]);
+      modificaNomeJTF.setText(datiProc[2]);
+      modificaCognomeJTF.setText(datiProc[3]);
+      modificaDataNascitaJTF.setText(datiProc[4]);
+      modificaCittaNascitaJTF.setText(datiProc[5]);
+      modificaViaJTF.setText(datiProc[6]);
+      modificaCittaResidenzaJTF.setText(datiProc[7]);
+      modificaCapJTF.setText(datiProc[8]);
+      modificaIbanJTF.setText(datiProc[9]);
+      
     }//GEN-LAST:event_cercaMatricolaJBActionPerformed
 
     

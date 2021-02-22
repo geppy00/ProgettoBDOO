@@ -83,9 +83,11 @@ public class Controller {
          f6.setVisible(true);
      }
      
-     public void aggiornaProcuratore(String idCopiato){
+     public String[] prendiDatiProcuratorePerAggiornare(String idCopiato){
+          String[] datiProc = new String[10];
           ConnectionToDataBase db1 = new ConnectionToDataBase();
-          db1.updateProcuratori(idCopiato);
+          datiProc = db1.updateProcuratori(idCopiato);
+          return datiProc;
      }
      
      public void tornaIndietroInserireNuovoProcuratore(){
@@ -112,6 +114,11 @@ public class Controller {
      public void tornaIndietroDaCercaProcuratore(){
           f7.setVisible(false);
           f3.setVisible(true);
+     }
+     
+     public void aggiornaDatiProcuratore(String[] datiProc, String idCopiatoPerModificareDatiProc){
+        ConnectionToDataBase db1 = new ConnectionToDataBase();
+        db1.updateProcuratore(datiProc, idCopiatoPerModificareDatiProc);
      }
 }
 

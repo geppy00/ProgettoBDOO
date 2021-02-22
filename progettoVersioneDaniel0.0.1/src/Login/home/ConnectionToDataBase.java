@@ -1,11 +1,15 @@
 
 package Login.home;
+import static java.lang.Character.FORMAT;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel; 
 import javax.swing.JTable;
 
 public class ConnectionToDataBase {
-    
+    private static final String FORMAT = "yyyy/MM/dd";
 /*CONNESSIONE AL DATABASE SUL SERVER POSTGRESQL 13*/
 	public Connection connectionToDatabase() {
 		Connection connection = null;
@@ -60,39 +64,42 @@ public class ConnectionToDataBase {
             
             return -1;
 	}
+        
+        //Funzione per CONVERSIONE DA STRING A DATE
+        public Date convertiStringToDate(String dataDiNascitaStr) {
+             Date date1=null;
+           try{
+                date1=(Date) new SimpleDateFormat("dd/MM/yyyy").parse(dataDiNascitaStr); 
+                return date1;
+           }catch(Exception e) {
+                System.err.println(e.getClass().getName()+": "+e.getMessage());
+                System.exit(0);
+            }
+           return date1;
+        }
 
 	/*CODICE PER AGGIORNARE I RECORD DELLA NOSTRA TABELLA DEL NOSTRO DATABASE (UPDATE OPERATION)*/
-	public void updateOperation() {
-		Statement stmt = null;
-		Connection connection = connectionToDatabase();
-
-		try {
-			connection.setAutoCommit(false);
-			stmt = connection.createStatement();
-			String sql = "UPDATE PERSONA set ETA = 15 WHERE ID = 2;";
-			stmt.executeUpdate(sql);
-			connection.commit();
-			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM PERSONA;");
-			while(rs.next()) {
-				int id = rs.getInt("id");
-				String nome = rs.getString("nome");
-				String cognome = rs.getString("cognome");
-				int eta = rs.getInt("eta");
-				System.out.println("ID = " + id);
-				System.out.println("NOME = " + nome);
-				System.out.println("COGNOME = " + cognome);
-				System.out.println("età = " + eta);
-				System.out.println("");
-			}
-			rs.close();
-			stmt.close();
-			connection.close();
-		}catch(Exception e) {
-			System.err.println(e.getClass().getName()+": "+e.getMessage());
-			System.exit(0);
-		}
-		System.out.println("Operazione di UPDATE effettuata con successo");
+	public void updateProcuratore(String[] datiProc, String idCopiatoPerModificareDatiProc){
+            Connection connection = connectionToDatabase();
+            //CONVERSIONE DEL CAP DA STRING AD INT
+            int capInt=Integer.parseInt(datiProc[8]); 
+            
+            //CONVERSIONE DA STRING A DATE
+            String dataDiNascitaStr = datiProc[4];
+            Date dataDiNascitaDt = convertiStringToDate(dataDiNascitaStr);
+            try{
+              
+                
+                
+                connection.setAutoCommit(false);
+                String sql= "UPDATE procuratori_tbl set code_id='"+datiProc[0]+"', codice_fiscale='"+datiProc[1]+
+                            "',  nome='"+datiProc[2]+"', cognome='"+datiProc[3]+"', data_di_nascita='"+datiProc[4]+
+                            "', citta_nascita='"+datiProc[5]+"', via='"+datiProc[6]+"', citta='"+datiProc[7]+
+                            "', cap='"+datiProc[8]+"', iban='"+datiProc[9]+"';";
+            }catch(Exception e){
+                System.err.println(e.getClass().getName()+": "+e.getMessage());
+                System.exit(0);
+            }
 	}
 
 	/*CODICE PER ELIMINARE I RECORD DELLA NOSTRA TABELLA DEL NOSTRO DATABASE (DELETE OPERATION)*/
@@ -143,36 +150,53 @@ public class ConnectionToDataBase {
 		System.out.println("I record sono stati creati correttamente");
         }
         
-       public void updateProcuratori(String idCopiato){
+       
+     public String convertiDate(java.util.Date dataDiNascita){
+        DateFormat df = new SimpleDateFormat(FORMAT);
+        String strDate = df.format(dataDiNascita);
+        return strDate;
+    }
+    
+        
+        
+       public String[] updateProcuratori(String idCopiato){
         AggiornaDatiProcuratore updateProc = new AggiornaDatiProcuratore();
         Connection connection = connectionToDatabase();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String cognome= null;
+        
         
         try{
             stmt = connection.prepareStatement("SELECT * FROM procuratori_tbl WHERE code_id LIKE ?");
             stmt.setString(1, idCopiato+"%");
             rs = stmt.executeQuery();
             while(rs.next()){
-               /*String id = rs.getString("code_id");
+               String id = rs.getString("code_id");
                String codiceFiscale = rs.getString("codice_fiscale");
-               String nome = rs.getString("nome");*/
-               cognome = rs.getString("cognome");
-               /*Date d = rs.getDate("data_di_nascita");
+               String nome = rs.getString("nome");
+               String cognome = rs.getString("cognome");
+               Date d = rs.getDate("data_di_nascita");
                String cittaNascita = rs.getString("citta_nascita");
                String via =  rs.getString("via");
                String cittaResidenza =  rs.getString("citta");
                int cap = rs.getInt("cap");
-               String iban =  rs.getString("iban");*/
+               String iban =  rs.getString("iban");
                
-               updateProc.stampaCognome(cognome);
+               //Effettuo le conversioni per creare un unico array di String
+               String capConvertitoStr = Integer.toString(cap);
+               String dataDiNascitaConvertitoStr = convertiDate(d);
+               
+               //Faccio un array per contenere tutti i dati
+               String datiProcuratore[] = {id, codiceFiscale, nome, cognome, dataDiNascitaConvertitoStr, cittaNascita, via, cittaResidenza, capConvertitoStr, iban};
+                return datiProcuratore;
             }
             
             
-        }catch(Exception e){
+        }catch(SQLException e){
                 System.out.println("Errore nella stampa ");
                 System.exit(0);
             }
+        
+         return null;
        }
 }
