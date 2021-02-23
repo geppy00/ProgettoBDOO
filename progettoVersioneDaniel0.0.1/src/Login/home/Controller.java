@@ -1,6 +1,7 @@
 
 package Login.home;
 import java.sql.*;
+import java.util.HashSet;
 
 
 public class Controller {
@@ -116,9 +117,14 @@ public class Controller {
           f3.setVisible(true);
      }
      
-     public void aggiornaDatiProcuratore(String[] datiProc, String idCopiatoPerModificareDatiProc){
+     public void aggiornaDatiProcuratore(String[] datiProc, String idCopiatoPerModificareDatiProc, Date dateNascitaSql){
         ConnectionToDataBase db1 = new ConnectionToDataBase();
-        db1.updateProcuratore(datiProc, idCopiatoPerModificareDatiProc);
+        db1.updateProcuratore(datiProc, idCopiatoPerModificareDatiProc, dateNascitaSql);
+     }
+     
+     public void tornaIndietroDaAggiornaProcuratore(){
+        f6.setVisible(false);
+        f3.setVisible(true);
      }
 }
 

@@ -5,6 +5,11 @@
  */
 package Login.home;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Giuseppe
@@ -54,6 +59,8 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
         modificaCapJTF = new javax.swing.JTextField();
         modificaIbanJTF = new javax.swing.JTextField();
         aggiornaDatiProcuratoreJB = new javax.swing.JToggleButton();
+        tornaIndietroJB = new javax.swing.JButton();
+        nuovaDataNascitaJDC = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,12 +99,23 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
 
         ibanJL.setText("IBAN");
 
+        modificaDataNascitaJTF.setEditable(false);
+
         aggiornaDatiProcuratoreJB.setText("AGGIORNA");
         aggiornaDatiProcuratoreJB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aggiornaDatiProcuratoreJBActionPerformed(evt);
             }
         });
+
+        tornaIndietroJB.setText("TORNA INDIETRO");
+        tornaIndietroJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tornaIndietroJBActionPerformed(evt);
+            }
+        });
+
+        nuovaDataNascitaJDC.setDateFormatString("yyyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,15 +134,14 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
                                         .addComponent(inputInserimentoMatricolaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cercaMatricolaJB))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(codiceFiscaleJL)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(modificaCodiceFiscaleJTF))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(matricolaJL)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(modificaMatricolaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(codiceFiscaleJL)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(modificaCodiceFiscaleJTF))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(matricolaJL)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(modificaMatricolaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -146,24 +163,28 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(cittaNascitaJL)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(modificaCittaNascitaJTF))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(modificaDataNascitaJTF)))
-                                        .addGap(39, 39, 39))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cognomeJL)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(modificaCognomeJTF))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(nomeJL)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(modificaNomeJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(modificaCittaNascitaJTF)))
+                                        .addGap(39, 39, 39))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(177, 177, 177)
+                                        .addComponent(nuovaDataNascitaJDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(modificaDataNascitaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cognomeJL)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(modificaCognomeJTF))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(nomeJL)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(modificaNomeJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(tornaIndietroJB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(aggiornaDatiProcuratoreJB)))
                 .addContainerGap())
         );
@@ -192,9 +213,11 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
                     .addComponent(cognomeJL)
                     .addComponent(modificaCognomeJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(modificaDataNascitaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(modificaDataNascitaJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nuovaDataNascitaJDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cittaNascitaJL)
@@ -216,7 +239,9 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
                     .addComponent(ibanJL)
                     .addComponent(modificaIbanJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(aggiornaDatiProcuratoreJB)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aggiornaDatiProcuratoreJB)
+                    .addComponent(tornaIndietroJB))
                 .addContainerGap())
         );
 
@@ -233,6 +258,8 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
       
       String idCopiatoPerModificareDatiProc = inputInserimentoMatricolaJTF.getText();
       
+      java.sql.Date dateNascitaSql = new java.sql.Date(nuovaDataNascitaJDC.getDate().getTime());
+      
       datiProc[0] = modificaMatricolaJTF.getText();
       datiProc[1] = modificaCodiceFiscaleJTF.getText();
       datiProc[2] = modificaNomeJTF.getText();
@@ -248,9 +275,17 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
           System.out.println(datiProc[i]);
       }
       
-      c6.aggiornaDatiProcuratore(datiProc, idCopiatoPerModificareDatiProc);
+      c6.aggiornaDatiProcuratore(datiProc, idCopiatoPerModificareDatiProc, dateNascitaSql);
     }//GEN-LAST:event_aggiornaDatiProcuratoreJBActionPerformed
 
+    public Date convertiStringToDate(String dateStr) throws Exception{
+        
+        Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(dateStr);  
+        nuovaDataNascitaJDC.setDate(date1);
+        return date1;
+    }
+    
+    
     private void cercaMatricolaJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaMatricolaJBActionPerformed
       String[] datiProc = new String[10];
       datiProc = c6.prendiDatiProcuratorePerAggiornare(inputInserimentoMatricolaJTF.getText());
@@ -266,7 +301,18 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
       modificaCapJTF.setText(datiProc[8]);
       modificaIbanJTF.setText(datiProc[9]);
       
+        try {
+            Date nascitaUtil = convertiStringToDate(datiProc[4]);
+            nuovaDataNascitaJDC.setDate(nascitaUtil);
+        } catch (Exception ex) {
+            Logger.getLogger(AggiornaDatiProcuratore.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_cercaMatricolaJBActionPerformed
+
+    private void tornaIndietroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroJBActionPerformed
+        c6.tornaIndietroDaAggiornaProcuratore();
+    }//GEN-LAST:event_tornaIndietroJBActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -293,6 +339,8 @@ public class AggiornaDatiProcuratore extends javax.swing.JFrame {
     private javax.swing.JTextField modificaNomeJTF;
     private javax.swing.JTextField modificaViaJTF;
     private javax.swing.JLabel nomeJL;
+    private com.toedter.calendar.JDateChooser nuovaDataNascitaJDC;
+    private javax.swing.JButton tornaIndietroJB;
     private javax.swing.JLabel viaJL;
     // End of variables declaration//GEN-END:variables
 

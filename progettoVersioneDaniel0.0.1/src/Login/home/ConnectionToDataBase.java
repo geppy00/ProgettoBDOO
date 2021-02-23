@@ -65,37 +65,26 @@ public class ConnectionToDataBase {
             return -1;
 	}
         
-        //Funzione per CONVERSIONE DA STRING A DATE
-        public Date convertiStringToDate(String dataDiNascitaStr) {
-             Date date1=null;
-           try{
-                date1=(Date) new SimpleDateFormat("dd/MM/yyyy").parse(dataDiNascitaStr); 
-                return date1;
-           }catch(Exception e) {
-                System.err.println(e.getClass().getName()+": "+e.getMessage());
-                System.exit(0);
-            }
-           return date1;
-        }
 
 	/*CODICE PER AGGIORNARE I RECORD DELLA NOSTRA TABELLA DEL NOSTRO DATABASE (UPDATE OPERATION)*/
-	public void updateProcuratore(String[] datiProc, String idCopiatoPerModificareDatiProc){
+	public void updateProcuratore(String[] datiProc, String idCopiatoPerModificareDatiProc, Date dateNascitaSql){
             Connection connection = connectionToDatabase();
             //CONVERSIONE DEL CAP DA STRING AD INT
             int capInt=Integer.parseInt(datiProc[8]); 
+          
+            Statement stmt = null;
             
-            //CONVERSIONE DA STRING A DATE
-            String dataDiNascitaStr = datiProc[4];
-            Date dataDiNascitaDt = convertiStringToDate(dataDiNascitaStr);
             try{
-              
-                
-                
                 connection.setAutoCommit(false);
+                stmt = connection.createStatement();
                 String sql= "UPDATE procuratori_tbl set code_id='"+datiProc[0]+"', codice_fiscale='"+datiProc[1]+
-                            "',  nome='"+datiProc[2]+"', cognome='"+datiProc[3]+"', data_di_nascita='"+datiProc[4]+
+                            "',  nome='"+datiProc[2]+"', cognome='"+datiProc[3]+"', data_di_nascita='"+dateNascitaSql+
                             "', citta_nascita='"+datiProc[5]+"', via='"+datiProc[6]+"', citta='"+datiProc[7]+
-                            "', cap='"+datiProc[8]+"', iban='"+datiProc[9]+"';";
+                            "', cap='"+capInt+"', iban='"+datiProc[9]+"' WHERE code_id='"+idCopiatoPerModificareDatiProc+"';";
+                stmt.executeUpdate(sql);
+		connection.commit();
+                stmt.close();
+                connection.close();
             }catch(Exception e){
                 System.err.println(e.getClass().getName()+": "+e.getMessage());
                 System.exit(0);
