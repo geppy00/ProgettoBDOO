@@ -27,6 +27,7 @@ public class loginForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        sceltaTipoUtenteJCB = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/home/background.png"))); // NOI18N
@@ -78,7 +79,7 @@ public class loginForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 50, 50));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 50, 50));
 
         jToggleButton1.setBackground(new java.awt.Color(255, 102, 102));
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/home/icons8_multiply_32px.png"))); // NOI18N
@@ -90,6 +91,9 @@ public class loginForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 19, 50, -1));
+
+        sceltaTipoUtenteJCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "procuratore", "admin" }));
+        jPanel3.add(sceltaTipoUtenteJCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 0, 510, 662));
 
@@ -122,7 +126,10 @@ public class loginForm extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        String passwordUtente, nomeUtente = jTextField1.getText();
        passwordUtente = jPasswordField1.getText();
-       boolean ritorno = c1.accedi(nomeUtente, passwordUtente, this);
+       
+       String sceltaTipoUtente = sceltaTipoUtenteJCB.getSelectedItem().toString();
+       
+       boolean ritorno = c1.accedi(nomeUtente, passwordUtente, this, sceltaTipoUtente);
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -140,5 +147,6 @@ public class loginForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JComboBox<String> sceltaTipoUtenteJCB;
     // End of variables declaration//GEN-END:variables
 }

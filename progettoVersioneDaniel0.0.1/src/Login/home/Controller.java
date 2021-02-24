@@ -22,30 +22,37 @@ public class Controller {
         
     }
     
-    public boolean accedi (String nomeUtente, String passwordUtente, loginForm f1){
-        int flag = 0;
+    public boolean accedi (String nomeUtente, String passwordUtente, loginForm f1, String sceltaTipoUtente){
         System.out.println("nomeUtente: "+nomeUtente+" passwordUtente: "+passwordUtente);
         ConnectionToDataBase db1 = new ConnectionToDataBase();
-        flag = db1.selectOperation(nomeUtente, passwordUtente);
+        String flag = db1.selectOperation(nomeUtente, passwordUtente, sceltaTipoUtente);
         
         System.out.println(flag);
         
-        if(flag == 1){
+        if(flag.equals("procuratore")){
             System.out.println("Login effettuato con successo");
             //db1.stampaTabellaTerminale();
             return true;
         } 
-        else if(flag == 0){  
+        else if(flag.equals("admin")){  
             System.out.println("Benvenuto admin");
             f2 = new AdminPage(this);
             f2.setVisible(true);
             f1.setVisible(false);
             return true;
         }
+        else if(flag.equals("sportivo")){
+            System.out.println("BENVENUTO SPORTIVO");
+            return true;
+        }
+        else if(flag.equals("Dati non corrispodenti")){
+            System.out.println("Login non effettuato con successo Dati SBAGLIATI");
+            return false;
+        }
         else{
             System.out.println("Login non effettuato con successo");
             return false;
-        }  
+        }
     }
     
     public void apriSezioneProcuratori(){
@@ -125,6 +132,11 @@ public class Controller {
      public void tornaIndietroDaAggiornaProcuratore(){
         f6.setVisible(false);
         f3.setVisible(true);
+     }
+     
+     public void inserisciNuovaPswdAndUsername(String newPassword,  String newUsername){
+         ConnectionToDataBase db1 = new ConnectionToDataBase();
+         db1.nuovaPswdAndUsername(newPassword, newUsername);
      }
 }
 

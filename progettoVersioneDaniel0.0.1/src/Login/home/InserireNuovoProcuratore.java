@@ -47,6 +47,10 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
         okButtonJB = new javax.swing.JButton();
         dateOfBirth = new com.toedter.calendar.JDateChooser();
         tornaIndietroJB = new javax.swing.JButton();
+        nuovoUsernameJL = new javax.swing.JLabel();
+        inputNuovoUsernameJTF = new javax.swing.JTextField();
+        nuovaPswProcJL = new javax.swing.JLabel();
+        nuovaPasswordJTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +90,10 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
             }
         });
 
+        nuovoUsernameJL.setText("Username");
+
+        nuovaPswProcJL.setText("Password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,23 +105,6 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
                         .addComponent(tornaIndietroJB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(okButtonJB))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(viaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viaInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cittaJL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cittaInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(capJL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(capInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ibanJL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ibanInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +135,35 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(nomeJL)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomeInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(nomeInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nuovoUsernameJL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputNuovoUsernameJTF))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viaInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cittaJL)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cittaInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(capJL))
+                            .addComponent(nuovaPswProcJL))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(capInputJTF, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(nuovaPasswordJTF))
+                        .addGap(18, 18, 18)
+                        .addComponent(ibanJL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ibanInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,7 +199,13 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
                     .addComponent(capInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ibanJL)
                     .addComponent(ibanInputJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuovoUsernameJL)
+                    .addComponent(inputNuovoUsernameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuovaPswProcJL)
+                    .addComponent(nuovaPasswordJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tornaIndietroJB)
                     .addComponent(okButtonJB))
@@ -211,7 +236,11 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
         codiceIDCopiato=codeIDInputJTF.getText();
         cittaNascitaCopiato=cittaNascitaJTF.getText();
         
+        String newPassword = nuovaPasswordJTF.getText();
+        String newUsername = inputNuovoUsernameJTF.getText();
+        
         c3.okButtonInserimento(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, (java.sql.Date) date, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
+        c3.inserisciNuovaPswdAndUsername(newPassword, newUsername);
     }//GEN-LAST:event_okButtonJBActionPerformed
 
     private void tornaIndietroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroJBActionPerformed
@@ -238,8 +267,12 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateOfBirth;
     private javax.swing.JTextField ibanInputJTF;
     private javax.swing.JLabel ibanJL;
+    private javax.swing.JTextField inputNuovoUsernameJTF;
     private javax.swing.JTextField nomeInputJTF;
     private javax.swing.JLabel nomeJL;
+    private javax.swing.JTextField nuovaPasswordJTF;
+    private javax.swing.JLabel nuovaPswProcJL;
+    private javax.swing.JLabel nuovoUsernameJL;
     private javax.swing.JButton okButtonJB;
     private javax.swing.JButton tornaIndietroJB;
     private javax.swing.JTextField viaInputJTF;

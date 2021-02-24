@@ -34,9 +34,10 @@ public class ConnectionToDataBase {
         
 
 	/*CODICE PER FAR COMPARIRE SULLA CONSOLE LA TABELLA DEL NOSTRO DATABASE (SELECT OPERATION)*/
-	public int selectOperation(String nomeUtente, String passwordUtente) {
+	public String selectOperation(String nomeUtente, String passwordUtente, String sceltaTipoUtente) {
             Statement stmt = null;
             Connection connection = connectionToDatabase();
+            String sceltaLogin=null;
 
             try {
                 stmt = connection.createStatement();
@@ -45,14 +46,14 @@ public class ConnectionToDataBase {
                           
                     String nomeUtenteSalvato = rs.getString("username");
                     String passwordUtenteSalvato = rs.getString("pswd");
-                    if (nomeUtenteSalvato.equals(nomeUtente)&& passwordUtenteSalvato.equals(passwordUtente)){
-                        if(passwordUtenteSalvato.equals("admin") && nomeUtenteSalvato.equals("admin"))
-                            return 0;
-                        else
-                            return 1;
+                    sceltaLogin = rs.getString("scelta_login");
+                    System.out.println(sceltaLogin+nomeUtenteSalvato+passwordUtenteSalvato);
+                    
+                    if(nomeUtenteSalvato.equals(nomeUtente) && passwordUtenteSalvato.equals(passwordUtente) && sceltaLogin.equals(sceltaTipoUtente)){
+                         return sceltaLogin;
                     }
-        
 		}
+                
                 rs.close();
                 stmt.close();
             	connection.close();
@@ -62,7 +63,7 @@ public class ConnectionToDataBase {
                 System.exit(0);
             }
             
-            return -1;
+           return "Dati non corrispodenti";
 	}
         
 
@@ -187,5 +188,26 @@ public class ConnectionToDataBase {
             }
         
          return null;
+       }
+       
+       public void nuovaPswdAndUsername(String newPassword,  String newUsername){
+           Connection connection = connectionToDatabase();
+           try{
+               connection.setAutoCommit(false);
+               String sql = "INSERT INTO login_tbl (username, pswd)"
+                            +"VALUES (?, ?)";
+               
+               PreparedStatement preparedStmt = connection.prepareStatement(sql);
+               preparedStmt.setString(1, newUsername);
+               preparedStmt.setString(2, newPassword);
+               preparedStmt.execute();
+               
+               preparedStmt.close();
+               connection.commit();
+               connection.close();
+           }catch(SQLException e) {
+			System.err.println(e.getClass().getName()+": "+e.getMessage());
+			System.exit(0);
+		}
        }
 }
