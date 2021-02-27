@@ -14,6 +14,7 @@ public class AdminPage extends javax.swing.JFrame {
     
     SezioneProcuratori p1;
     Controller c2;
+    ControllerSportivo c1;
     
     public AdminPage(Controller theController) {
         initComponents();
@@ -48,6 +49,11 @@ public class AdminPage extends javax.swing.JFrame {
 
         bottonForSportivoJB.setText("SPONSOR");
         bottonForSportivoJB.setActionCommand("");
+        bottonForSportivoJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bottonForSportivoJBActionPerformed(evt);
+            }
+        });
 
         bottonForSponsorJB.setText("SPORTIVI");
         bottonForSponsorJB.addActionListener(new java.awt.event.ActionListener() {
@@ -77,28 +83,25 @@ public class AdminPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bottonForProcuratoreJB)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addComponent(bottonForSponsorJB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                                .addComponent(bottonForSportivoJB))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(titoloFinestraJL)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(tornaIndietroLoginJB)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(436, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(titoloFinestraJL)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bottonForProcuratoreJB)
+                                .addGap(137, 137, 137)
+                                .addComponent(bottonForSponsorJB)
+                                .addGap(17, 17, 17)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bottonForSportivoJB))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(40, 40, 40)
                 .addComponent(titoloFinestraJL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bottonForProcuratoreJB)
                     .addComponent(bottonForSportivoJB)
@@ -112,7 +115,7 @@ public class AdminPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bottonForSponsorJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonForSponsorJBActionPerformed
-        // TODO add your handling code here:
+       c2.apriSezioneSportivo();
     }//GEN-LAST:event_bottonForSponsorJBActionPerformed
 
     private void bottonForProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonForProcuratoreJBActionPerformed
@@ -123,6 +126,10 @@ public class AdminPage extends javax.swing.JFrame {
     private void tornaIndietroLoginJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroLoginJBActionPerformed
         c2.tornaIndietroLogin();
     }//GEN-LAST:event_tornaIndietroLoginJBActionPerformed
+
+    private void bottonForSportivoJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonForSportivoJBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bottonForSportivoJBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

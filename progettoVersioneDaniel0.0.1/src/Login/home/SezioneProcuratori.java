@@ -34,6 +34,7 @@ public class SezioneProcuratori extends javax.swing.JFrame {
         cercareProcuratoreJB = new javax.swing.JButton();
         tornaIndietroJB = new javax.swing.JButton();
         visualizzaDatiProcuratoriJB = new javax.swing.JButton();
+        modificaCredenzialiJB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +94,13 @@ public class SezioneProcuratori extends javax.swing.JFrame {
             }
         });
 
+        modificaCredenzialiJB.setText("MODIFICA CREDENZIALI");
+        modificaCredenzialiJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificaCredenzialiJBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,6 +126,8 @@ public class SezioneProcuratori extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(visualizzaDatiProcuratoriJB)
+                        .addGap(79, 79, 79)
+                        .addComponent(modificaCredenzialiJB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tornaIndietroJB)))
                 .addContainerGap())
@@ -138,7 +148,8 @@ public class SezioneProcuratori extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tornaIndietroJB)
-                    .addComponent(visualizzaDatiProcuratoriJB))
+                    .addComponent(visualizzaDatiProcuratoriJB)
+                    .addComponent(modificaCredenzialiJB))
                 .addContainerGap())
         );
 
@@ -200,6 +211,10 @@ public class SezioneProcuratori extends javax.swing.JFrame {
        c2.apriFinestraCercaProcuratore();
     }//GEN-LAST:event_cercareProcuratoreJBActionPerformed
 
+    private void modificaCredenzialiJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificaCredenzialiJBActionPerformed
+       c2.apriFinestraModificaCredenziali();
+    }//GEN-LAST:event_modificaCredenzialiJBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiungereProcuratoreJB;
@@ -208,6 +223,7 @@ public class SezioneProcuratori extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel1;
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
+    private javax.swing.JButton modificaCredenzialiJB;
     private javax.swing.JButton modificareDatiProcuratoreJB;
     private javax.swing.JButton tornaIndietroJB;
     private javax.swing.JButton visualizzaDatiProcuratoriJB;

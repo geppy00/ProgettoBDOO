@@ -194,12 +194,13 @@ public class ConnectionToDataBase {
            Connection connection = connectionToDatabase();
            try{
                connection.setAutoCommit(false);
-               String sql = "INSERT INTO login_tbl (username, pswd)"
-                            +"VALUES (?, ?)";
+               String sql = "INSERT INTO login_tbl (username, pswd, scelta_login)"
+                            +"VALUES (?, ?, ?)";
                
                PreparedStatement preparedStmt = connection.prepareStatement(sql);
                preparedStmt.setString(1, newUsername);
                preparedStmt.setString(2, newPassword);
+               preparedStmt.setString(3, "procuratore");
                preparedStmt.execute();
                
                preparedStmt.close();
@@ -209,5 +210,46 @@ public class ConnectionToDataBase {
 			System.err.println(e.getClass().getName()+": "+e.getMessage());
 			System.exit(0);
 		}
+       }
+       
+       public void eliminaPswdAndUsername(String username){
+            Connection connection = connectionToDatabase();
+            
+            try{
+                String sql = "DELETE FROM login_tbl WHERE username = ?";
+                PreparedStatement preparedStmt = connection.prepareStatement(sql);
+                preparedStmt.setString(1, username);
+                preparedStmt.executeUpdate();
+                connection.close();
+            }catch(Exception e) {
+			System.err.println(e.getClass().getName()+": "+e.getMessage());
+			System.exit(0);
+		}
+       }
+       
+       public String[] prendiCredenzialiProcuratore(String idProcuratore){
+           String[] datiProcuratore = new String[2];
+           Connection connection = connectionToDatabase();
+           PreparedStatement stmt = null;
+           ResultSet rs = null;
+           
+           try{
+                stmt = connection.prepareStatement("SELECT * FROM login_tbl WHERE id LIKE ?");
+                stmt.setString(1, idProcuratore+"%");
+                rs = stmt.executeQuery();
+                while(rs.next()){
+                    String username = rs.getString("username");
+                    String pswd = rs.getString("pswd");
+                    System.out.println("DATI PRESI"+username+pswd);
+                    datiProcuratore[0]=username;
+                    datiProcuratore[1]=pswd;
+                    return datiProcuratore;
+                }
+           }catch(Exception e){
+                System.out.println("Errore nella RICERCA ");
+                System.exit(0);
+            }
+           
+           return datiProcuratore;
        }
 }

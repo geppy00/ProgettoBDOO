@@ -13,9 +13,11 @@ public class Controller {
     EliminaProcuratore f5;
     AggiornaDatiProcuratore f6;
     CercaProcuratore f7;
+    ModificaCredenziali f8;
+    SezioneSportivo f9;
     
     public static void main(String[] args) {
-       
+        
         Controller theController = new Controller();
         loginForm f1 = new loginForm(theController); 
         f1.setVisible(true);
@@ -137,6 +139,30 @@ public class Controller {
      public void inserisciNuovaPswdAndUsername(String newPassword,  String newUsername){
          ConnectionToDataBase db1 = new ConnectionToDataBase();
          db1.nuovaPswdAndUsername(newPassword, newUsername);
+     }
+     
+     public void eliminaPswdAndUsernameController(String username){
+        ConnectionToDataBase db1 = new ConnectionToDataBase();
+        db1.eliminaPswdAndUsername(username);
+     }
+     
+     public void apriFinestraModificaCredenziali(){
+         f8 = new ModificaCredenziali(this);
+         f3.setVisible(false);
+         f8.setVisible(true);
+     }
+     
+     public String[] prendiCredenzialiProcuratore(String idCopiato){
+         ConnectionToDataBase db1 = new ConnectionToDataBase();
+         String[] datiProcuratore = new String[2];
+         datiProcuratore = db1.prendiCredenzialiProcuratore(idCopiato);
+         return datiProcuratore;
+     }
+     
+     public void apriSezioneSportivo(){
+         f9 = new SezioneSportivo(this);
+         f9.setVisible(true);
+         f2.setVisible(false);
      }
 }
 
