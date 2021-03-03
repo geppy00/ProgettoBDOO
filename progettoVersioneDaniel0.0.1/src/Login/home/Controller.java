@@ -16,19 +16,20 @@ public class Controller {
     ModificaCredenziali f8;
     SezioneSportivo f9;
     
+            
     public static void main(String[] args) {
         
         Controller theController = new Controller();
+         ControllerSportivo cSport = new ControllerSportivo();
         loginForm f1 = new loginForm(theController); 
         f1.setVisible(true);
         
     }
     
-    public boolean accedi (String nomeUtente, String passwordUtente, loginForm f1, String sceltaTipoUtente){
+    public boolean accedi (String nomeUtente, String passwordUtente, loginForm f1, String sceltaTipoUtente, Controller theController ){
         System.out.println("nomeUtente: "+nomeUtente+" passwordUtente: "+passwordUtente);
         ConnectionToDataBase db1 = new ConnectionToDataBase();
         String flag = db1.selectOperation(nomeUtente, passwordUtente, sceltaTipoUtente);
-        
         System.out.println(flag);
         
         if(flag.equals("procuratore")){
@@ -38,7 +39,8 @@ public class Controller {
         } 
         else if(flag.equals("admin")){  
             System.out.println("Benvenuto admin");
-            f2 = new AdminPage(this);
+            ControllerSportivo cSport = new ControllerSportivo();
+            f2 = new AdminPage(this, cSport);
             f2.setVisible(true);
             f1.setVisible(false);
             return true;
@@ -159,10 +161,6 @@ public class Controller {
          return datiProcuratore;
      }
      
-     public void apriSezioneSportivo(){
-         f9 = new SezioneSportivo(this);
-         f9.setVisible(true);
-         f2.setVisible(false);
-     }
+    
 }
 

@@ -4,11 +4,18 @@ package Login.home;
 
 public class loginForm extends javax.swing.JFrame {
     Controller c1;
+    ControllerSportivo c2;
     
     public loginForm(Controller theController){
         initComponents();
         this.setLocationRelativeTo(null);
           c1 = theController;
+    }
+    
+    public loginForm(ControllerSportivo theControllerSportivo){
+        initComponents();
+        this.setLocationRelativeTo(null);
+          c2 = theControllerSportivo;
     }
 
    
@@ -129,7 +136,7 @@ public class loginForm extends javax.swing.JFrame {
        
        String sceltaTipoUtente = sceltaTipoUtenteJCB.getSelectedItem().toString();
        
-       boolean ritorno = c1.accedi(nomeUtente, passwordUtente, this, sceltaTipoUtente);
+       boolean ritorno = c1.accedi(nomeUtente, passwordUtente,this , sceltaTipoUtente, this.c1);
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
