@@ -10,7 +10,10 @@ public class ControllerSportivo {
     Controller cProc;
     AggiungiSportivo fAggiungSportivo;
     CercaSportivo fCercaSportivo;
-    
+    AccessoProcuratore fp1;
+    GestioneSportivoDaProcuratore fp2;
+    loginForm loginFinestra;
+             
     public static void main(String[] args){
         
         ControllerSportivo theControllerSportivo = new ControllerSportivo();
@@ -26,7 +29,6 @@ public class ControllerSportivo {
     public void apriAggiungSportivo(){
         fAggiungSportivo = new AggiungiSportivo(this);
         fAggiungSportivo.setVisible(true);
-        f9.setVisible(false);
     }
     
     public void tornaIndietroDaAggiungSportivo(){
@@ -53,4 +55,13 @@ public class ControllerSportivo {
         fCercaSportivo.setVisible(false);
         f9.setVisible(true);
     }
+    
+    public void tornaIndietroDaSezioneSportivo(){
+        f9.setVisible(false);
+    }
+    
+   public void apriGestioneSportivoDaProcuratore(){
+       fp2 = new GestioneSportivoDaProcuratore(this);
+       fp2.setVisible(true);
+   }
 }

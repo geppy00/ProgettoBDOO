@@ -187,7 +187,7 @@ public class AggiungiSportivo extends javax.swing.JFrame {
     }//GEN-LAST:event_aggiungiJBActionPerformed
 
     private void tornaIndietroHBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroHBActionPerformed
-        cSport1.tornaIndietroDaAggiungSportivo();
+        //cSport1.tornaIndietroDaAggiungSportivo();
     }//GEN-LAST:event_tornaIndietroHBActionPerformed
 
 

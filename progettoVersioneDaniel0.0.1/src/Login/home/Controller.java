@@ -15,6 +15,8 @@ public class Controller {
     CercaProcuratore f7;
     ModificaCredenziali f8;
     SezioneSportivo f9;
+    AccessoProcuratore fp1;
+    GestioneSportivoDaProcuratore fp2;
     
             
     public static void main(String[] args) {
@@ -34,6 +36,9 @@ public class Controller {
         
         if(flag.equals("procuratore")){
             System.out.println("Login effettuato con successo");
+            fp1 = new AccessoProcuratore(this);
+            fp1.setVisible(true);
+            f1.setVisible(false);
             //db1.stampaTabellaTerminale();
             return true;
         } 

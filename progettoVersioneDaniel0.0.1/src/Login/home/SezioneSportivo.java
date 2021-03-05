@@ -52,6 +52,11 @@ public class SezioneSportivo extends javax.swing.JFrame {
 
         tornaIndietroJB.setText("TORNA INDIETRO");
         tornaIndietroJB.setToolTipText("");
+        tornaIndietroJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tornaIndietroJBActionPerformed(evt);
+            }
+        });
 
         datiSportiviTabellaJT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,12 +120,16 @@ public class SezioneSportivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aggiungiSportivoJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiungiSportivoJBActionPerformed
-        c9.apriAggiungSportivo();
+        
     }//GEN-LAST:event_aggiungiSportivoJBActionPerformed
 
     private void cercaSportivoJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaSportivoJBActionPerformed
        c9.apriCercaSportivo();
     }//GEN-LAST:event_cercaSportivoJBActionPerformed
+
+    private void tornaIndietroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroJBActionPerformed
+       c9.tornaIndietroDaSezioneSportivo();
+    }//GEN-LAST:event_tornaIndietroJBActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

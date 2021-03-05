@@ -37,6 +37,7 @@ public class ConnectionDatabaseSportivo {
             connection.setAutoCommit(false);
             String sql = "INSERT INTO sportivi_tbl (codicefiscale, nome, cognome, sesso, datadinascita, ibansportivo, tipologiasport, mail)"+
                          "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            
             PreparedStatement preparedStmt = connection.prepareStatement(sql);
             preparedStmt.setString(1, datiSportivo[0]);
             preparedStmt.setString(2, datiSportivo[1]);
