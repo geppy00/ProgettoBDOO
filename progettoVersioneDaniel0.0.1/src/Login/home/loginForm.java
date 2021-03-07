@@ -136,6 +136,7 @@ public class loginForm extends javax.swing.JFrame {
        
        String sceltaTipoUtente = sceltaTipoUtenteJCB.getSelectedItem().toString();
        
+       
        boolean ritorno = c1.accedi(nomeUtente, passwordUtente,this , sceltaTipoUtente, this.c1);
        
     }//GEN-LAST:event_jButton2ActionPerformed

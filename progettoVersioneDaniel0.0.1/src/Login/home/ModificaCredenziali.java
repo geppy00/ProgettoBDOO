@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Login.home;
 
-/**
- *
- * @author Giuseppe
- */
+
 public class ModificaCredenziali extends javax.swing.JFrame {
 
     Controller c8;
@@ -35,6 +28,7 @@ public class ModificaCredenziali extends javax.swing.JFrame {
         nuovaPswdJL = new javax.swing.JLabel();
         inputNuovaPswdJTF = new javax.swing.JTextField();
         aggiornaBtnJB = new javax.swing.JButton();
+        annullaButtonJB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,54 +45,67 @@ public class ModificaCredenziali extends javax.swing.JFrame {
 
         usenameJL.setText("USERNAME");
 
-        credenzialiProcuratoreJL.setText("CREDENZIALI");
+        credenzialiProcuratoreJL.setText("CREDENZIALI PROCURATORE");
 
         visualizzaUsernameJTF.setToolTipText("");
 
-        inserimentoNuoviDatiJL.setText("NUOVA PASSWORD");
+        inserimentoNuoviDatiJL.setText("INSERISCI LA NUOVA PASSWORD");
 
         nuovaPswdJL.setText("NUOVA PASSWORD");
 
         aggiornaBtnJB.setText("AGGIORNA");
+        aggiornaBtnJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aggiornaBtnJBActionPerformed(evt);
+            }
+        });
+
+        annullaButtonJB.setText("ANNULLA");
+        annullaButtonJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annullaButtonJBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(codiceIdJL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(prendiCodiceIdJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cercaBtnJB))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(usenameJL)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(visualizzaUsernameJTF))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(pswdJL)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(visualizzaPswdJTF, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(credenzialiProcuratoreJL))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(inserimentoNuoviDatiJL))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nuovaPswdJL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(codiceIdJL)
+                                .addComponent(inputNuovaPswdJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prendiCodiceIdJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cercaBtnJB))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(credenzialiProcuratoreJL)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(usenameJL)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(visualizzaUsernameJTF))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(pswdJL)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(visualizzaPswdJTF, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(nuovaPswdJL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputNuovaPswdJTF))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(107, 107, 107)
-                                .addComponent(inserimentoNuoviDatiJL)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aggiornaBtnJB)))
+                                .addComponent(aggiornaBtnJB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(annullaButtonJB)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,11 +130,13 @@ public class ModificaCredenziali extends javax.swing.JFrame {
                 .addComponent(inserimentoNuoviDatiJL)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuovaPswdJL)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(inputNuovaPswdJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(aggiornaBtnJB)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(nuovaPswdJL)
+                        .addComponent(inputNuovaPswdJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(aggiornaBtnJB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(annullaButtonJB)
+                .addContainerGap())
         );
 
         pack();
@@ -141,9 +150,21 @@ public class ModificaCredenziali extends javax.swing.JFrame {
        visualizzaUsernameJTF.setText(datiProcuratore[0]);
     }//GEN-LAST:event_cercaBtnJBActionPerformed
 
+    private void aggiornaBtnJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaBtnJBActionPerformed
+        String nuovaPswdCopiata = inputNuovaPswdJTF.getText();
+        String idCopiato = prendiCodiceIdJTF.getText();
+        
+        c8.modificaPasswordProcuratore(idCopiato, nuovaPswdCopiata);
+    }//GEN-LAST:event_aggiornaBtnJBActionPerformed
+
+    private void annullaButtonJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annullaButtonJBActionPerformed
+       c8.tornaIndietroDaModificaPassword();
+    }//GEN-LAST:event_annullaButtonJBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiornaBtnJB;
+    private javax.swing.JButton annullaButtonJB;
     private javax.swing.JButton cercaBtnJB;
     private javax.swing.JLabel codiceIdJL;
     private javax.swing.JLabel credenzialiProcuratoreJL;

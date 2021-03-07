@@ -109,27 +109,29 @@ public class ConnectionToDataBase {
 		}
 	}
         
-        public void InserisciNuovoProcuratore(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, Date sqlDate, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
+        
+        public void InserisciNuovoProcuratore(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, Date sqlDate, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato, int idCopiatoDaLogin){
             Statement stmt = null;
 		Connection connection = connectionToDatabase();
 
 		try {	
 			connection.setAutoCommit(false);
-			String sql = "INSERT INTO procuratori_tbl (code_id, codice_fiscale, nome, cognome, data_di_nascita, citta_nascita, via, citta, cap, iban)"+
-						 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                         PreparedStatement preparedStmt = connection.prepareStatement(sql);
-                         preparedStmt.setString(1, codiceIDCopiato);
-                         preparedStmt.setString(2, codiceFiscCopiato);
-                         preparedStmt.setString(3, nomeCopiato);
-                         preparedStmt.setString(4, cognomeCopiato);
-                         preparedStmt.setDate(5, sqlDate);
-                         preparedStmt.setString(6, cittaNascitaCopiato);
-                         preparedStmt.setString(7, viaCopiato);
-                         preparedStmt.setString(8, cittaResidenzaCopiato);
-                         preparedStmt.setInt(9, capCopiato);
-                         preparedStmt.setString(10, ibanCopiato);
-                  
-			preparedStmt.execute();
+			String sql = "INSERT INTO procuratori_tbl (code_id, codice_fiscale, nome, cognome, data_di_nascita, citta_nascita, via, citta, cap, iban, idlogin)"+
+						 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        PreparedStatement preparedStmt = connection.prepareStatement(sql);
+                        preparedStmt.setString(1, codiceIDCopiato);
+                        preparedStmt.setString(2, codiceFiscCopiato);
+                        preparedStmt.setString(3, nomeCopiato);
+                        preparedStmt.setString(4, cognomeCopiato);
+                        preparedStmt.setDate(5, sqlDate);
+                        preparedStmt.setString(6, cittaNascitaCopiato);
+                        preparedStmt.setString(7, viaCopiato);
+                        preparedStmt.setString(8, cittaResidenzaCopiato);
+                        preparedStmt.setInt(9, capCopiato);
+                        preparedStmt.setString(10, ibanCopiato);
+                        preparedStmt.setInt(11, idCopiatoDaLogin);
+                        
+                        preparedStmt.execute();
 			
 			connection.commit();
 			connection.close();
@@ -190,6 +192,30 @@ public class ConnectionToDataBase {
          return null;
        }
        
+       
+        public int prendiIdProcuratoreDaLogin(String usenameProcuratore){
+            int n=0;
+            Connection connection = connectionToDatabase();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+           
+            try{
+                connection.setAutoCommit(false);
+                String sql = "SELECT * FROM login_tbl WHERE username LIKE ?;";
+                stmt = connection.prepareStatement(sql);
+                stmt.setString(1, usenameProcuratore+"%");
+                rs = stmt.executeQuery();
+                while(rs.next()){
+                    n = rs.getInt("id");
+                }
+                return n;
+            }catch(SQLException e) {
+		System.err.println(e.getClass().getName()+": "+e.getMessage());
+		System.exit(0);
+            }
+            return n;
+       }
+       
        public void nuovaPswdAndUsername(String newPassword,  String newUsername){
            Connection connection = connectionToDatabase();
            try{
@@ -203,6 +229,8 @@ public class ConnectionToDataBase {
                preparedStmt.setString(3, "procuratore");
                preparedStmt.execute();
                
+               
+               
                preparedStmt.close();
                connection.commit();
                connection.close();
@@ -211,22 +239,7 @@ public class ConnectionToDataBase {
 			System.exit(0);
 		}
        }
-       
-       public void eliminaPswdAndUsername(String username){
-            Connection connection = connectionToDatabase();
-            
-            try{
-                String sql = "DELETE FROM login_tbl WHERE username = ?";
-                PreparedStatement preparedStmt = connection.prepareStatement(sql);
-                preparedStmt.setString(1, username);
-                preparedStmt.executeUpdate();
-                connection.close();
-            }catch(Exception e) {
-			System.err.println(e.getClass().getName()+": "+e.getMessage());
-			System.exit(0);
-		}
-       }
-       
+     
        public String[] prendiCredenzialiProcuratore(String idProcuratore){
            String[] datiProcuratore = new String[2];
            Connection connection = connectionToDatabase();
@@ -251,5 +264,56 @@ public class ConnectionToDataBase {
             }
            
            return datiProcuratore;
+       }
+       
+       public int prendiIdLoginPerEliminare(String idProcuratoreEliminare){
+           int idDaLogin = -1;
+           Connection connection = connectionToDatabase();
+           try{
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM procuratori_tbl WHERE code_id LIKE ?");
+                stmt.setString(1, idProcuratoreEliminare+"%");
+                ResultSet rs =  stmt.executeQuery();
+                while(rs.next()){
+                    idDaLogin = rs.getInt("idlogin");
+                    return idDaLogin;
+                }
+                
+           }catch(Exception e){
+                System.out.println("!! Errore nella RICERCA id LOGIN non trovato !!");
+                System.exit(0);
+            }
+           
+           return idDaLogin;
+       }
+       
+       public void modificaPasswordProcuratore(String idProcuratore, String nuovaPassword){
+           
+           int idLoginProc = prendiIdLoginPerEliminare(idProcuratore);
+           Connection connection = connectionToDatabase();
+            try{
+                PreparedStatement stmt = connection.prepareStatement("UPDATE login_tbl SET pswd = '"+nuovaPassword+"' WHERE id = ?");
+                stmt.setInt(1, idLoginProc);
+                stmt.executeUpdate();
+                connection.close();
+           }catch(Exception e){
+                System.out.println("!! Errore nell'AGGIORNAMENTO DELLA PASSSWORD id LOGIN non trovato !!");
+                System.exit(0);
+            }
+       }  
+       
+       public void eliminaProcuratoreDaLogin(int idLogin){
+            Statement stmt = null;
+            Connection connection = connectionToDatabase();
+
+            try {
+                String sql = "DELETE FROM login_tbl WHERE id =?";
+                PreparedStatement preparedStmt = connection.prepareStatement(sql);
+                preparedStmt.setInt(1, idLogin);
+                preparedStmt.executeUpdate();
+                connection.close();
+            }catch(Exception e) {
+		System.err.println(e.getClass().getName()+": "+e.getMessage());
+		System.exit(0);
+            }
        }
 }

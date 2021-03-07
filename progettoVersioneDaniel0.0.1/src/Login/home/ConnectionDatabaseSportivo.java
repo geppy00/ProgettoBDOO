@@ -4,6 +4,8 @@ package Login.home;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
@@ -29,14 +31,14 @@ public class ConnectionDatabaseSportivo {
 	return connection;
     }
     
-    public void inserisciNuovoSportivoDB(String[] datiSportivo, Date sqlDate){
+    public void inserisciNuovoSportivoDB(String[] datiSportivo, Date sqlDate, String code_id){
         Statement stmt = null;
 	Connection connection = connectionToDatabase();
 
 	try {	
             connection.setAutoCommit(false);
-            String sql = "INSERT INTO sportivi_tbl (codicefiscale, nome, cognome, sesso, datadinascita, ibansportivo, tipologiasport, mail)"+
-                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO sportivi_tbl (codicefiscale, nome, cognome, sesso, datadinascita, ibansportivo, tipologiasport, mail, code_id)"+
+                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement preparedStmt = connection.prepareStatement(sql);
             preparedStmt.setString(1, datiSportivo[0]);
@@ -47,6 +49,7 @@ public class ConnectionDatabaseSportivo {
             preparedStmt.setString(6, datiSportivo[4]);
             preparedStmt.setString(7, datiSportivo[5]);
             preparedStmt.setString(8, datiSportivo[6]);
+             preparedStmt.setString(8, code_id);
                   
             preparedStmt.execute();
 			

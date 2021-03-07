@@ -5,7 +5,7 @@ public class GestioneSportivoDaProcuratore extends javax.swing.JFrame {
 
      ControllerSportivo cSportivoDaProcuratore2;
     
-    public GestioneSportivoDaProcuratore( ControllerSportivo theControllerSportivo) {
+    public GestioneSportivoDaProcuratore(ControllerSportivo theControllerSportivo) {
         this.setLocationRelativeTo(null);
         cSportivoDaProcuratore2=theControllerSportivo;
         initComponents();
@@ -18,6 +18,7 @@ public class GestioneSportivoDaProcuratore extends javax.swing.JFrame {
 
         testoIntroduttivoJL = new javax.swing.JLabel();
         addNewSportivoJB = new javax.swing.JButton();
+        tornaIndietroJB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -31,6 +32,13 @@ public class GestioneSportivoDaProcuratore extends javax.swing.JFrame {
             }
         });
 
+        tornaIndietroJB.setText("TORNA INDIETRO");
+        tornaIndietroJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tornaIndietroJBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -41,6 +49,10 @@ public class GestioneSportivoDaProcuratore extends javax.swing.JFrame {
                     .addComponent(addNewSportivoJB)
                     .addComponent(testoIntroduttivoJL))
                 .addContainerGap(85, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tornaIndietroJB)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -49,7 +61,9 @@ public class GestioneSportivoDaProcuratore extends javax.swing.JFrame {
                 .addComponent(testoIntroduttivoJL)
                 .addGap(61, 61, 61)
                 .addComponent(addNewSportivoJB)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addComponent(tornaIndietroJB)
+                .addContainerGap())
         );
 
         pack();
@@ -59,9 +73,14 @@ public class GestioneSportivoDaProcuratore extends javax.swing.JFrame {
         cSportivoDaProcuratore2.apriAggiungSportivo();
     }//GEN-LAST:event_addNewSportivoJBActionPerformed
 
+    private void tornaIndietroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroJBActionPerformed
+        cSportivoDaProcuratore2.tornaIndietroDaGestioneSportivoDaProcuratore();
+    }//GEN-LAST:event_tornaIndietroJBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewSportivoJB;
     private javax.swing.JLabel testoIntroduttivoJL;
+    private javax.swing.JButton tornaIndietroJB;
     // End of variables declaration//GEN-END:variables
 }

@@ -239,8 +239,9 @@ public class InserireNuovoProcuratore extends javax.swing.JFrame {
         String newPassword = nuovaPasswordJTF.getText();
         String newUsername = inputNuovoUsernameJTF.getText();
         
-        c3.okButtonInserimento(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, (java.sql.Date) date, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
         c3.inserisciNuovaPswdAndUsername(newPassword, newUsername);
+        int idCopiatoDaLogin = c3.prendiIdProcuratoreDaLoginController(newUsername);
+        c3.okButtonInserimento(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, (java.sql.Date) date, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato, idCopiatoDaLogin);
     }//GEN-LAST:event_okButtonJBActionPerformed
 
     private void tornaIndietroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tornaIndietroJBActionPerformed

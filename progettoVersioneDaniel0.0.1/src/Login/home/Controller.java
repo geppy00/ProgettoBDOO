@@ -16,13 +16,14 @@ public class Controller {
     ModificaCredenziali f8;
     SezioneSportivo f9;
     AccessoProcuratore fp1;
+    ControllerSportivo theControllerSportivo;
     GestioneSportivoDaProcuratore fp2;
     
             
     public static void main(String[] args) {
         
         Controller theController = new Controller();
-         ControllerSportivo cSport = new ControllerSportivo();
+        ControllerSportivo cSport = new ControllerSportivo();
         loginForm f1 = new loginForm(theController); 
         f1.setVisible(true);
         
@@ -36,10 +37,11 @@ public class Controller {
         
         if(flag.equals("procuratore")){
             System.out.println("Login effettuato con successo");
-            fp1 = new AccessoProcuratore(this);
-            fp1.setVisible(true);
+            theControllerSportivo = new ControllerSportivo();
+            theControllerSportivo.apriAccessoComeProcuratore();
+            /*fp1 = new AccessoProcuratore(this);
+            fp1.setVisible(true);*/
             f1.setVisible(false);
-            //db1.stampaTabellaTerminale();
             return true;
         } 
         else if(flag.equals("admin")){  
@@ -80,9 +82,9 @@ public class Controller {
         f4.setVisible(true);
      }
      
-     public void okButtonInserimento(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, Date sqlDate, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato){
+     public void okButtonInserimento(int capCopiato, String cittaResidenzaCopiato, String codiceFiscCopiato, String cognomeCopiato, Date sqlDate, String ibanCopiato, String nomeCopiato, String viaCopiato, String codiceIDCopiato, String cittaNascitaCopiato, int idCopiatoDaLogin){
           ConnectionToDataBase db1 = new ConnectionToDataBase();
-          db1.InserisciNuovoProcuratore(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, sqlDate, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato);
+          db1.InserisciNuovoProcuratore(capCopiato, cittaResidenzaCopiato, codiceFiscCopiato, cognomeCopiato, sqlDate, ibanCopiato, nomeCopiato, viaCopiato, codiceIDCopiato, cittaNascitaCopiato, idCopiatoDaLogin);
      }
      
      public void apriFinestraEliminaProcuratore(){
@@ -148,9 +150,15 @@ public class Controller {
          db1.nuovaPswdAndUsername(newPassword, newUsername);
      }
      
-     public void eliminaPswdAndUsernameController(String username){
+     public int cercaIdLoginProcuratoreController(String idProcuratore){
         ConnectionToDataBase db1 = new ConnectionToDataBase();
-        db1.eliminaPswdAndUsername(username);
+        int idLoginDaEliminare = db1.prendiIdLoginPerEliminare(idProcuratore);
+        return idLoginDaEliminare;
+     }
+     
+     public void eliminaProcuratoreDaLogin(int idLogin){
+         ConnectionToDataBase db1 = new ConnectionToDataBase();
+         db1.eliminaProcuratoreDaLogin(idLogin);
      }
      
      public void apriFinestraModificaCredenziali(){
@@ -164,6 +172,22 @@ public class Controller {
          String[] datiProcuratore = new String[2];
          datiProcuratore = db1.prendiCredenzialiProcuratore(idCopiato);
          return datiProcuratore;
+     }
+     
+     public int prendiIdProcuratoreDaLoginController(String usernameProcuratore){
+        ConnectionToDataBase db1 = new ConnectionToDataBase();
+        int n = db1.prendiIdProcuratoreDaLogin(usernameProcuratore);
+        return n;
+     }
+    
+     public void modificaPasswordProcuratore(String idProcuratore, String nuovaPassword){
+        ConnectionToDataBase db1 = new ConnectionToDataBase();
+        db1.modificaPasswordProcuratore(idProcuratore, nuovaPassword);
+     }
+     
+     public void tornaIndietroDaModificaPassword(){
+        f8.setVisible(false);
+        f3.setVisible(true);
      }
      
     

@@ -4,11 +4,18 @@ package Login.home;
 public class AccessoProcuratore extends javax.swing.JFrame {
 
     Controller cSportivoDaProcuratore1;
-    ControllerSportivo theControllerSportivo;
+    ControllerSportivo c1;
     
-    public AccessoProcuratore(Controller theController) {
+    public AccessoProcuratore(ControllerSportivo theControllerSportivo) {
         this.setLocationRelativeTo(null);
-        cSportivoDaProcuratore1=theController;
+        c1 = theControllerSportivo;
+        initComponents();
+    }
+    
+    public AccessoProcuratore(Controller theController,  ControllerSportivo theControllerSportivo) {
+        this.setLocationRelativeTo(null);
+        cSportivoDaProcuratore1 = theController;
+        c1 = theControllerSportivo;
         initComponents();
     }
 
@@ -27,6 +34,11 @@ public class AccessoProcuratore extends javax.swing.JFrame {
         testoIntroduttivoJL.setText("WELCOME PROCURATORE");
 
         tastoLogoutJB.setText("DISCONNETTI");
+        tastoLogoutJB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tastoLogoutJBActionPerformed(evt);
+            }
+        });
 
         addSportivoDaProcuratoreJB.setBackground(new java.awt.Color(0, 0, 0));
         addSportivoDaProcuratoreJB.setForeground(new java.awt.Color(255, 0, 51));
@@ -71,9 +83,13 @@ public class AccessoProcuratore extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addSportivoDaProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSportivoDaProcuratoreJBActionPerformed
-        theControllerSportivo = new ControllerSportivo();
-        theControllerSportivo.apriGestioneSportivoDaProcuratore();
+
+        c1.apriGestioneSportivoDaProcuratore();
     }//GEN-LAST:event_addSportivoDaProcuratoreJBActionPerformed
+
+    private void tastoLogoutJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tastoLogoutJBActionPerformed
+        c1.tornaIndietroDaAccessoComeProcuratore();
+    }//GEN-LAST:event_tastoLogoutJBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

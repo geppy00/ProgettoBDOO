@@ -148,30 +148,6 @@ public class EliminaProcuratore extends javax.swing.JFrame {
             }
     }
     
-    public String prendiNomeDaEliminare(String idEliminare){
-        String usernameDaEliminare=" ";
-        ConnectionToDataBase db1 = new ConnectionToDataBase();
-        Connection connct1 = db1.connectionToDatabase();
-        
-        try{
-            PreparedStatement stmt = connct1.prepareStatement("SELECT * FROM procuratori_tbl WHERE code_id LIKE ?");
-            stmt.setString(1, idEliminare+"%");
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                usernameDaEliminare = rs.getString("nome");
-            }
-            
-            System.out.println("NEL TRY CE = "+usernameDaEliminare);
-            return usernameDaEliminare;
-            
-        }catch(Exception e){
-            System.out.println("Errore nella stampa ");
-            System.exit(0);
-         }
-        
-       return usernameDaEliminare;
-    }
-    
     private void btnCercaJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaJBActionPerformed
       visualizzaDatiInTabella();
     }//GEN-LAST:event_btnCercaJBActionPerformed
@@ -179,11 +155,10 @@ public class EliminaProcuratore extends javax.swing.JFrame {
     private void btnEliminaProcuratoreJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaProcuratoreJBActionPerformed
       String idEliminare = prendiMatricolaDaEliminareJTF.getText();
       System.out.println(idEliminare);
+      int loginIdEliminare = c5.cercaIdLoginProcuratoreController(idEliminare);
       c5.cancellaProcuratore(idEliminare);
-      
-      String usernameEliminare = prendiNomeDaEliminare(idEliminare);
-      System.out.println("UTENTE DA ELIMINARE = "+usernameEliminare);
-      c5.eliminaPswdAndUsernameController(usernameEliminare);
+      c5.eliminaProcuratoreDaLogin(loginIdEliminare);
+     
     }//GEN-LAST:event_btnEliminaProcuratoreJBActionPerformed
 
     private void btnTornaIndiertroJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTornaIndiertroJBActionPerformed
